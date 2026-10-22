@@ -13,6 +13,10 @@
   --rule: #c5ccc4;
   --accent: #a8501f;
   --lake: #1f5f73;
+  --fam-alg: #1f6f86;
+  --fam-siou: #a8501f;
+  --fam-iro: #6d4b94;
+  --fam-arch: #6b6f5c;
   --display: "Zilla Slab", Rockwell, "Roboto Slab", Georgia, serif;
   --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -27,6 +31,10 @@
     --rule: #263840;
     --accent: #e3915b;
     --lake: #6fb6c9;
+    --fam-alg: #6fb6c9;
+    --fam-siou: #e3915b;
+    --fam-iro: #b79adb;
+    --fam-arch: #a3a68f;
     color-scheme: dark;
   }
 }
@@ -38,6 +46,10 @@
   --rule: #263840;
   --accent: #e3915b;
   --lake: #6fb6c9;
+  --fam-alg: #6fb6c9;
+  --fam-siou: #e3915b;
+  --fam-iro: #b79adb;
+  --fam-arch: #a3a68f;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -104,6 +116,127 @@ svg.pop .dot { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
 svg.pop .lab { fill: var(--fg); font-size: 12px; }
 svg.pop .labs { fill: var(--muted); font-size: 11px; }
 
+/* Native Nations section */
+.nat-sec { border-top: 1px solid var(--rule); padding-block: 40px; scroll-margin-top: 56px; }
+.nat-sec h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.1; margin: 0 0 10px; text-wrap: balance; }
+.nat-sec h3 { font-family: var(--display); font-weight: 700; font-size: 1.5rem; line-height: 1.2; margin: 40px 0 10px; }
+.nat-intro { max-width: 44rem; color: var(--muted); margin: 0 0 24px; }
+.ptabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.ptab { font-family: var(--mono); font-size: 0.8rem; padding: 6px 12px; background: transparent; color: var(--fg); border: 1px solid var(--rule); cursor: pointer; }
+.ptab:hover { border-color: var(--lake); }
+.ptab[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.nat-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.map-box { overflow-x: auto; border: 1px solid var(--rule); background: var(--bg); }
+svg.map { display: block; width: 100%; min-width: 440px; height: auto; font-family: var(--body); }
+svg.map .water { fill: var(--lake); fill-opacity: 0.22; }
+svg.map .wi { fill: var(--surface); stroke: var(--fg); stroke-width: 1.5; stroke-linejoin: round; }
+svg.map .blob { fill: var(--c); fill-opacity: 0.28; stroke: var(--c); stroke-width: 1.8; }
+svg.map .site { fill: var(--c); stroke: var(--bg); stroke-width: 2; }
+svg.map .mark { fill: var(--c); stroke: var(--bg); stroke-width: 2; }
+svg.map .mark.hollow { fill: var(--bg); stroke: var(--c); stroke-width: 3; }
+svg.map .blabel { fill: var(--fg); font-size: 14px; font-weight: 600; paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; stroke-linejoin: round; }
+svg.map .lakelab { fill: var(--lake); font-size: 16px; font-style: italic; }
+svg.map .scale { stroke: var(--fg); stroke-width: 2; fill: none; }
+svg.map .scalelab { fill: var(--muted); font-family: var(--mono); font-size: 12px; }
+.legend { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.88rem; color: var(--muted); }
+.legend li { display: flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 12px; height: 12px; background: var(--c); flex: none; }
+.map-note { font-size: 0.88rem; color: var(--muted); margin: 10px 0 0; max-width: 44rem; }
+.panel .np-label { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); margin: 0 0 4px; }
+.panel h3 { margin: 0 0 8px; font-size: 1.6rem; }
+.panel p { margin: 0 0 16px; }
+.panel ul { list-style: none; margin: 0; padding: 0; }
+.panel li { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 4px 10px; padding-block: 10px; border-top: 1px solid var(--rule); font-size: 0.95rem; }
+.panel li .sw { margin-top: 0.4rem; }
+.panel li strong { font-weight: 600; }
+.panel li span.snip { display: block; color: var(--muted); }
+.matrix-wrap { overflow-x: auto; border: 1px solid var(--rule); }
+table.matrix { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.9rem; }
+table.matrix th, table.matrix td { padding: 6px 10px; text-align: center; border-bottom: 1px solid var(--rule); }
+table.matrix thead th { font-family: var(--mono); font-weight: 400; font-size: 0.75rem; color: var(--muted); }
+table.matrix th.rowh { text-align: left; font-weight: 400; white-space: nowrap; }
+table.matrix th.rowh a { color: var(--fg); text-decoration-color: var(--rule); }
+table.matrix .cur { background: var(--surface); }
+table.matrix thead button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+table.matrix thead .cur button { color: var(--fg); font-weight: 500; }
+.mdot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+.care { max-width: 46rem; color: var(--muted); margin: 0 0 20px; }
+.dir { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 0 32px; }
+.nation { padding-block: 16px 20px; border-top: 1px solid var(--rule); min-width: 0; scroll-margin-top: 64px; }
+.nation h4 { font-family: var(--display); font-weight: 700; font-size: 1.3rem; line-height: 1.2; margin: 0 0 2px; display: flex; align-items: center; gap: 8px; }
+.nation .alt { font-size: 0.95rem; color: var(--muted); margin: 0 0 8px; }
+.nation dl { margin: 0 0 8px; font-size: 0.92rem; display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 2px 10px; }
+.nation dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 0.2rem; }
+.nation dd { margin: 0; }
+.nation .bel { margin: 0; font-size: 0.98rem; }
+@media (min-width: 821px) { .map-col.sticky { position: sticky; top: 64px; } }
+@media (max-width: 820px) { .nat-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Archaeology map */
+svg.amap { display: block; width: 100%; min-width: 440px; height: auto; font-family: var(--body); }
+svg.amap .water { fill: var(--lake); fill-opacity: 0.22; }
+svg.amap .wi { fill: var(--surface); stroke: var(--fg); stroke-width: 1.5; stroke-linejoin: round; }
+svg.amap .lakelab { fill: var(--lake); font-size: 16px; font-style: italic; }
+svg.amap .scale { stroke: var(--fg); stroke-width: 2; fill: none; }
+svg.amap .scalelab { fill: var(--muted); font-family: var(--mono); font-size: 12px; }
+svg.amap .leader { stroke: var(--muted); stroke-width: 1; }
+svg.amap .pin { cursor: pointer; }
+svg.amap .pin .shape { stroke: var(--bg); stroke-width: 2; }
+svg.amap .pin.standing .shape { fill: var(--accent); }
+svg.amap .pin.found .shape { fill: var(--lake); }
+svg.amap .pin .num { fill: var(--bg); font-family: var(--mono); font-size: 11px; font-weight: 500; text-anchor: middle; pointer-events: none; }
+svg.amap .pin[aria-pressed="true"] .shape { stroke: var(--fg); stroke-width: 3; }
+svg.amap .pin:focus-visible .shape { stroke: var(--fg); stroke-width: 3; }
+svg.amap .pin:focus { outline: none; }
+svg.amap .pin.dim { opacity: 0.18; pointer-events: none; }
+.key { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.88rem; color: var(--muted); }
+.key li { display: flex; align-items: center; gap: 8px; }
+.key .kc { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); flex: none; }
+.key .kd { width: 12px; height: 12px; background: var(--lake); transform: rotate(45deg); flex: none; }
+.ill { margin: 0 0 14px; color: var(--accent); }
+.ill.found { color: var(--lake); }
+.ill svg { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--surface); border: 1px solid var(--rule); }
+.ill figcaption { font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
+.ill .f { fill: currentColor; }
+.ill .o { fill: currentColor; fill-opacity: 0.25; stroke: currentColor; stroke-width: 3; }
+.ill .l { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.ill .g { fill: none; stroke: var(--muted); stroke-width: 2; }
+.ill .c { fill: var(--surface); }
+.ill .cl { fill: none; stroke: var(--surface); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ill .d { fill: none; stroke: currentColor; stroke-width: 3; stroke-dasharray: 6 5; }
+.asite { margin-bottom: 20px; }
+.asite .kind { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 4px; }
+.asite .kind.standing { color: var(--accent); }
+.asite .kind.found { color: var(--lake); }
+.asite h3 { margin: 0 0 4px; font-size: 1.6rem; }
+.asite .meta { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin: 0 0 10px; }
+.asite p { margin: 0 0 10px; }
+.asite .lbl { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 14px 0 2px; }
+.asite .status { font-size: 0.95rem; color: var(--muted); }
+.slist { list-style: none; margin: 0; padding: 0; }
+.slist button { display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); gap: 2px 10px; width: 100%; text-align: left; font: inherit; font-size: 0.95rem; color: var(--fg); background: transparent; border: 0; border-top: 1px solid var(--rule); padding: 8px 4px; cursor: pointer; }
+.slist button:hover { background: var(--surface); }
+.slist button[aria-pressed="true"] { background: var(--surface); }
+.slist .n { font-family: var(--mono); font-size: 0.8rem; padding-top: 0.15rem; }
+.slist .st .n { color: var(--accent); }
+.slist .fd .n { color: var(--lake); }
+.slist .pl { display: block; color: var(--muted); font-size: 0.85rem; }
+
+
+/* Photos (loaded live from Wikipedia) */
+.pic { margin: 0; min-width: 0; }
+.pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface); border: 1px solid var(--rule); }
+.pic figcaption { font-size: 0.72rem; line-height: 1.35; color: var(--muted); margin-top: 4px; }
+.pic figcaption a { color: var(--muted); }
+.pic.banner { margin: 0 0 24px; }
+.pic.banner img { aspect-ratio: 21 / 8; }
+.pic.nat { margin: 0 0 10px; }
+.pic.nat img { aspect-ratio: 16 / 9; }
+.ill.pic img { aspect-ratio: 16 / 9; }
+.ev.has-pic { grid-template-columns: 9.5rem minmax(0, 1fr) 13rem; }
+@media (max-width: 900px) { .ev.has-pic { grid-template-columns: 9.5rem minmax(0, 1fr); } .ev.has-pic .pic { grid-column: 2; max-width: 22rem; } }
+@media (max-width: 640px) { .ev.has-pic { grid-template-columns: minmax(0, 1fr); } .ev.has-pic .pic { grid-column: 1; } .pic.banner img { aspect-ratio: 16 / 9; } }
+
 footer { border-top: 1px solid var(--rule); padding-block: 32px 56px; color: var(--muted); font-size: 0.95rem; }
 footer p { max-width: 44rem; margin: 0 0 10px; }
 
@@ -136,6 +269,59 @@ footer p { max-width: 44rem; margin: 0 0 10px; }
     <div id="eras"></div>
   </div>
 
+  <section class="nat-sec" id="nations" aria-labelledby="nat-h">
+    <div class="wrap">
+      <p class="kicker">Native Nations</p>
+      <h2 id="nat-h">Who lived here, and when</h2>
+      <p class="nat-intro">Wisconsin has been home to many peoples, and the borders between them moved often. Pick a period to see where each nation lived, then read below for what is known about their beliefs.</p>
+      <div class="ptabs" id="ptabs" role="group" aria-label="Choose a time period"></div>
+      <div class="nat-grid">
+        <div class="map-col">
+          <div class="map-box"><svg class="map" id="natMap" viewBox="0 0 710 620" role="img" aria-label="Map of Wisconsin and nearby lands showing where Native peoples lived in the selected period"></svg></div>
+          <ul class="legend" id="legend"></ul>
+          <p class="map-note">Shaded areas are approximate and overlap because peoples shared, traded and fought over the same ground. The outlined shape is the present-day state.</p>
+        </div>
+        <div class="panel" aria-live="polite">
+          <p class="np-label" id="npLabel"></p>
+          <h3 id="npTitle"></h3>
+          <p id="npText"></p>
+          <ul id="npList"></ul>
+        </div>
+      </div>
+
+      <h3>Who was here when</h3>
+      <p class="care">A dot means the people appear on the map for that period. Select a column heading to jump the map to it.</p>
+      <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+
+      <h3>Beliefs and ceremonies</h3>
+      <p class="care">Most written records of Native beliefs were made by outsiders, often missionaries and traders, and they are incomplete and sometimes wrong. Many of these traditions are alive today, and they differ from person to person. Religion is also an outside category, since many nations describe their teachings as a whole way of life. For anything that matters, ask the nation itself. Tribal websites and <a href="https://wisconsinfirstnations.org" rel="noopener">Wisconsin First Nations</a> are good places to start.</p>
+      <div class="dir" id="dir"></div>
+    </div>
+  </section>
+
+  <section class="nat-sec" id="archaeology" aria-labelledby="arc-h">
+    <div class="wrap">
+      <p class="kicker">Archaeology</p>
+      <h2 id="arc-h">What the ground has kept</h2>
+      <p class="nat-intro">Every site here is more than 500 years old. Some still stand in the open as earthen mounds, a rebuilt stockade and carved rock. The rest was dug up or raised from a lake, and what survives is in museums and reports. Use the filter to separate the two, and select a marker to see a photo of the place or find and read what was found and what scholars think each place was for.</p>
+      <div class="ptabs" id="alayers" role="group" aria-label="Show sites by type"></div>
+      <div class="nat-grid">
+        <div class="map-col sticky">
+          <div class="map-box"><svg class="amap" id="arcMap" viewBox="105 90 460 480" role="group" aria-label="Map of archaeological sites in Wisconsin"></svg></div>
+          <ul class="key">
+            <li><span class="kc"></span>Still standing and visitable</li>
+            <li><span class="kd"></span>Found, excavated or recovered</li>
+          </ul>
+          <p class="map-note">Where markers crowd together they are spread apart, with a small dot and line showing the true spot. Many mounds and sites were destroyed by farming, roads and building, and some locations are kept private, so this map shows only a part of what exists. Please do not dig at or climb on mounds; they are burial places and are protected by Wisconsin law.</p>
+        </div>
+        <div>
+          <div class="asite" id="asite" aria-live="polite"></div>
+          <ul class="slist" id="slist"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="chart-sec" id="population">
     <div class="wrap">
       <h2>People counted, 1840 to 2020</h2>
@@ -148,6 +334,7 @@ footer p { max-width: 44rem; margin: 0 0 10px; }
 <footer>
   <div class="wrap">
     <p>Dates before about 1600 are estimates and archaeologists revise them often. Wisconsin's eleven federally recognized tribes (the Menominee, Ho-Chunk, Forest County Potawatomi, Oneida, Stockbridge-Munsee and six Ojibwe bands) are still here, and their own histories run longer and deeper than any single timeline.</p>
+    <p>Photos load live from Wikipedia and Wikimedia Commons. Each caption links to the article, where the photographer and free license are listed. Where no photo exists, a drawing is shown instead.</p>
     <p>Population figures are U.S. Census counts. To go further, start with the <a href="https://www.wisconsinhistory.org" rel="noopener">Wisconsin Historical Society</a>.</p>
   </div>
 </footer>
@@ -169,7 +356,7 @@ const ERAS = [
     lede: "People arrive as the ice retreats. They hunt giant animals, then fish, gather and trade, and learn to work metal before most of the world does.",
     events: [
       { when: "c. 12,500 BCE", title: "Hunters at the Hebior site", text: "At a site in Kenosha County, hunters butcher a mammoth, some of the oldest evidence of people anywhere in the Midwest.", tag: "peoples" },
-      { when: "c. 11,000 BCE", title: "Clovis hunters in the Driftless", text: "Stone spear points are found with the bones of a mastodon near Boaz in Richland County. Hunters follow the herds along cold, open ground.", tag: "peoples" },
+      { when: "c. 10,000 BCE", title: "A mastodon near Boaz", text: "Four boys find mastodon bones on a farm near Boaz in 1897. The animal lived about 12,100 years ago, near the end of the mastodons in the Midwest. Its bones, mixed with those of a second mastodon found nearby, are displayed at the UW-Madison Geology Museum.", tag: "land" },
       { when: "c. 8000 BCE", title: "Forests replace tundra", text: "As the climate warms, people shift to deer, fish, nuts and wild plants and move with the seasons between lakes, rivers and woodlands.", tag: "land" },
       { when: "c. 4000 to 1000 BCE", title: "The Old Copper Complex", text: "People in the Lake Superior and Lake Michigan region hammer raw copper into spear points, knives, awls and fish hooks. They are among the earliest metalworkers in the world, and the copper is traded across a continent.", tag: "economy" },
       { when: "c. 3000 BCE", title: "Dugout canoes and long-distance trade", text: "Waterways become highways. Goods, ideas and people move between the Great Lakes and the Mississippi valley.", tag: "culture" }
@@ -258,6 +445,146 @@ function el(tag, attrs, text) {
   return n;
 }
 
+// Photos: each lead image is looked up live from Wikipedia, so credit and license stay one click away.
+const WIKI_CACHE = {};
+function wikiLookup(title) {
+  if (!WIKI_CACHE[title]) {
+    WIKI_CACHE[title] = fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(title.replace(/ /g, "_")))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.thumbnail || !j.thumbnail.source) return null;
+        let s = j.thumbnail.source;
+        const o = j.originalimage;
+        if (o && o.width >= 960 && /\/\d+px-/.test(s)) s = s.replace(/\/\d+px-/, "/960px-");
+        else if (o && o.source) s = o.source;
+        return { src: s, fallback: j.thumbnail.source, title: j.title || title, alt: j.description ? (j.title + ": " + j.description) : (j.title || title),
+                 page: (j.content_urls && j.content_urls.desktop && j.content_urls.desktop.page) || ("https://en.wikipedia.org/wiki/" + encodeURIComponent(title.replace(/ /g, "_"))) };
+      })
+      .catch(function () { return null; });
+  }
+  return WIKI_CACHE[title];
+}
+function picFig(titles, kind, onfail, prefix) {
+  const fig = el("figure", { class: "pic " + (kind || "") });
+  const arr = Array.isArray(titles) ? titles : [titles];
+  function fail() { if (onfail) onfail(fig); else fig.remove(); }
+  (function next(i) {
+    if (i >= arr.length) { fail(); return; }
+    wikiLookup(arr[i]).then(function (r) {
+      if (!r) { next(i + 1); return; }
+      const img = el("img", { src: r.src, alt: r.alt, loading: "lazy", decoding: "async" });
+      img.addEventListener("error", function () {
+        if (!img.getAttribute("data-retry")) { img.setAttribute("data-retry", "1"); img.src = r.fallback; }
+        else { img.remove(); cap.remove(); fail(); }
+      });
+      const cap = el("figcaption");
+      cap.appendChild(document.createTextNode((prefix || "Photo") + ": "));
+      const a = el("a", { href: r.page, target: "_blank", rel: "noopener" }, r.title);
+      cap.appendChild(a);
+      cap.appendChild(document.createTextNode(" on Wikipedia, license linked there"));
+      fig.appendChild(img);
+      fig.appendChild(cap);
+    });
+  })(0);
+  return fig;
+}
+
+const ERA_IMG = { bedrock: ["Driftless Area", "Kettle Moraine"], first: ["Old Copper Complex"], mounds: ["Aztalan State Park", "Effigy mound"], furtrade: ["Jean Nicolet", "Fur trade"],
+  territory: ["Black Hawk War", "Wisconsin Territory"], statehood: ["Peshtigo fire"], progressive: ["Robert M. La Follette"], modern: ["Wisconsin State Capitol"] };
+const EVT = {
+  "The continent starts to split": ["Midcontinent Rift System"],
+  "Ice sheets come and go": ["Kettle Moraine"],
+  "The Driftless Area is skipped": ["Driftless Area"],
+  "A forest is buried at Two Creeks": ["Two Creeks Buried Forest"],
+  "Hunters at the Hebior site": ["Hebior mammoth site"],
+  "A mastodon near Boaz": ["Boaz mastodon"],
+  "The Old Copper Complex": ["Old Copper Complex"],
+  "Dugout canoes and long-distance trade": ["Dugout canoe"],
+  "Pottery and burial mounds": ["Woodland period"],
+  "Effigy mounds across southern Wisconsin": ["Effigy mound"],
+  "Aztalan on the Crawfish River": ["Aztalan State Park"],
+  "Oneota villages and maize farming": ["Oneota culture"],
+  "Great Lakes nations settle the region": ["Wild rice"],
+  "Jean Nicolet reaches Green Bay": ["Jean Nicolet"],
+  "The Beaver Wars": ["Beaver Wars"],
+  "Marquette and Jolliet reach the Mississippi": ["Louis Jolliet", "Jacques Marquette"],
+  "A trade built on partnerships": ["Fur trade"],
+  "The Fox Wars": ["Fox Wars"],
+  "Britain takes over": ["Treaty of Paris (1763)"],
+  "The United States claims the land": ["Northwest Ordinance"],
+  "Fight at Prairie du Chien": ["Siege of Prairie du Chien"],
+  "The lead rush": ["Mineral Point, Wisconsin"],
+  "The Black Hawk War": ["Black Hawk War"],
+  "Treaties and removals": ["Indian removal"],
+  "Wisconsin Territory is created": ["Wisconsin Territory"],
+  "Milwaukee becomes a city": ["Solomon Juneau"],
+  "Wisconsin becomes the 30th state": ["Wisconsin State Capitol"],
+  "The Republican Party begins in Ripon": ["Little White Schoolhouse"],
+  "The Joshua Glover case": ["Joshua Glover"],
+  "First kindergarten in the U.S.": ["Margarethe Schurz"],
+  "Wisconsin in the Civil War": ["Iron Brigade"],
+  "The typewriter, invented in Milwaukee": ["Christopher Latham Sholes"],
+  "The Peshtigo Fire": ["Peshtigo fire"],
+  "Wheat gives way to dairy": ["Stephen Babcock"],
+  "Robert La Follette is governor": ["Robert M. La Follette"],
+  "Harley-Davidson starts in Milwaukee": ["Harley-Davidson"],
+  "Milwaukee's Socialist mayors": ["Daniel Hoan"],
+  "Taliesin rises near Spring Green": ["Taliesin (Spring Green, Wisconsin)"],
+  "The Green Bay Packers are founded": ["Green Bay Packers"],
+  "Women's suffrage ratified": ["Nineteenth Amendment to the United States Constitution"],
+  "The state at war": ["Fort McCoy"],
+  "Joseph McCarthy in the Senate": ["Joseph McCarthy"],
+  "Major league baseball in Milwaukee": ["Milwaukee Braves"],
+  "Menominee termination and restoration": ["Menominee Indian Tribe of Wisconsin"],
+  "Lombardi and the Packers": ["Vince Lombardi"],
+  "Milwaukee open housing marches": ["James Groppi"],
+  "The first Earth Day": ["Gaylord Nelson"],
+  "The Sterling Hall bombing": ["Sterling Hall bombing"],
+  "Hmong and other new arrivals": ["Hmong Americans"],
+  "The Voigt Decision": ["Lac Courte Oreilles Band of Lake Superior Chippewa Indians v. Voigt"],
+  "Act 10 and the Capitol protests": ["2011 Wisconsin protests"],
+  "The Bucks win the NBA title": ["Giannis Antetokounmpo"],
+  "Milwaukee hosts the Republican National Convention": ["2024 Republican National Convention"]
+};
+const NIMG = { paleo: ["Paleo-Indians"], archaic: ["Old Copper Complex"], woodland: ["Woodland period"], aztalan: ["Aztalan State Park"], oneota: ["Oneota culture"],
+  hochunk: ["Ho-Chunk"], menominee: ["Menominee"], ojibwe: ["Ojibwe"], potawatomi: ["Potawatomi"], odawa: ["Odawa"], meskwaki: ["Meskwaki"], sauk: ["Sauk people"],
+  kickapoo: ["Kickapoo people"], mascouten: ["Mascouten"], miami: ["Miami people"], illinois: ["Illinois Confederation"], dakota: ["Dakota people"], chiwere: ["Ioway"],
+  wendat: ["Wyandot people", "Huron-Wendat Nation"], oneida: ["Oneida Nation"], munsee: ["Stockbridge–Munsee Community"], brothertown: ["Brothertown Indians"] };
+const SITE_IMG = {
+  "Raddatz Rockshelter": ["Raddatz Rockshelter", "Natural Bridge State Park (Wisconsin)"],
+  "Roche-a-Cri petroglyphs and pictographs": ["Roche-A-Cri State Park", "Roche-a-Cri Mound"],
+  "Wyalusing mounds and Sentinel Ridge": ["Wyalusing State Park"],
+  "Trempealeau mounds and camps": ["Perrot State Park"],
+  "Beloit College effigy mounds": ["Beloit College Effigy Mounds", "Beloit College"],
+  "Observatory Hill mounds": ["Observatory Hill Effigy Mounds", "Observatory Hill (Madison, Wisconsin)"],
+  "Lizard Mound State Park": ["Lizard Mound County Park", "Lizard Mound State Park"],
+  "Devil's Lake mounds": ["Devil's Lake State Park (Wisconsin)"],
+  "Panther Intaglio": ["Panther Intaglio"],
+  "General Atkinson mound group": ["Jefferson County Indian Mounds and Trail Park", "General Atkinson Mound Group"],
+  "Burrows Park bird effigy": ["Burrows Park", "Burrows Park Effigy Mound"],
+  "Kingsley Bend mound group": ["Kingsley Bend Mound Group"],
+  "Cassville Bluffs bird effigy": ["Cassville Bluffs State Natural Area", "Cassville, Wisconsin"],
+  "High Cliff effigy mounds": ["High Cliff State Park"],
+  "Sheboygan Indian Mound Park": ["Sheboygan Indian Mound Park", "Indian Mound Park (Sheboygan)"],
+  "Man Mound": ["Man Mound"],
+  "Aztalan": ["Aztalan State Park"],
+  "Upper Wakanda Park mound group": ["Wakanda Park", "Menomonie, Wisconsin"],
+  "Schaefer and Hebior mammoth sites": ["Hebior mammoth site", "Schaefer mammoth site"],
+  "Boaz mastodon": ["Boaz mastodon"],
+  "Silver Mound and the Hixton quarries": ["Silver Mound (Wisconsin)", "Hixton, Wisconsin"],
+  "Chesrow Complex": ["Chesrow Complex"],
+  "Old Copper cemetery": ["Copper Culture State Park", "Old Copper Complex"],
+  "Lake Mendota dugout canoes": ["Dugout canoe", "Lake Mendota"],
+  "Mero Mound Group at Diamond Bluff": ["Mero Mound Group", "Diamond Bluff, Wisconsin"],
+  "Strawberry Island site": ["Lac du Flambeau, Wisconsin"],
+  "Carcajou Point": ["Lake Koshkonong"],
+  "Lasley's Point": ["Lasley's Point", "Winneconne, Wisconsin"],
+  "Pammel Creek": ["La Crosse, Wisconsin"]
+};
+// Sites where the only photo found is of the surrounding town, lake or park rather than the site itself
+const SITE_LOOSE = { "Upper Wakanda Park mound group": 1, "Silver Mound and the Hixton quarries": 1, "Lake Mendota dugout canoes": 1, "Mero Mound Group at Diamond Bluff": 1,
+  "Strawberry Island site": 1, "Carcajou Point": 1, "Pammel Creek": 1, "Cassville Bluffs bird effigy": 1, "Beloit College effigy mounds": 1 };
+
 // Build rail and eras
 const rail = document.getElementById("railList");
 const erasRoot = document.getElementById("eras");
@@ -275,6 +602,7 @@ ERAS.forEach(function (era) {
   hb.appendChild(el("p", null, era.lede));
   head.appendChild(hb);
   sec.appendChild(head);
+  if (ERA_IMG[era.id]) sec.appendChild(picFig(ERA_IMG[era.id], "banner"));
 
   const ol = el("ol", { class: "events" });
   era.events.forEach(function (ev) {
@@ -285,12 +613,26 @@ ERAS.forEach(function (era) {
     body.appendChild(el("p", null, ev.text));
     body.appendChild(el("span", { class: "tag" }, TAGS[ev.tag]));
     li2.appendChild(body);
+    if (EVT[ev.title]) {
+      li2.classList.add("has-pic");
+      li2.appendChild(picFig(EVT[ev.title], "", function (f) { f.remove(); li2.classList.remove("has-pic"); }));
+    }
     ol.appendChild(li2);
   });
   sec.appendChild(ol);
   sec.appendChild(el("p", { class: "empty", hidden: "" }, "No events in this era for the selected topic."));
   erasRoot.appendChild(sec);
 });
+
+// Rail link for the Native Nations section
+(function () {
+  const li = el("li");
+  li.appendChild(el("a", { href: "#nations", "data-era": "nations" }, "Native Nations Map"));
+  rail.appendChild(li);
+  const li2 = el("li");
+  li2.appendChild(el("a", { href: "#archaeology", "data-era": "archaeology" }, "Archaeology Map"));
+  rail.appendChild(li2);
+})();
 
 // Filters
 const filters = document.getElementById("filters");
@@ -336,7 +678,958 @@ if ("IntersectionObserver" in window) {
     entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
   }, { rootMargin: "-20% 0px -70% 0px" });
   document.querySelectorAll("section.era").forEach(function (s) { io.observe(s); });
+  io.observe(document.getElementById("nations"));
+  io.observe(document.getElementById("archaeology"));
 }
+
+// Native Nations map, timeline and beliefs
+(function () {
+  const FAM = {
+    alg: { name: "Algonquian-speaking", v: "--fam-alg" },
+    siou: { name: "Siouan-speaking", v: "--fam-siou" },
+    iro: { name: "Iroquoian-speaking", v: "--fam-iro" },
+    arch: { name: "Archaeological culture", v: "--fam-arch" }
+  };
+
+  const N = {
+    paleo: { name: "Paleo-Indian hunters", fam: "arch", alt: "c. 12,500 to 8000 BCE", lang: "Unknown",
+      where: "Southern and western Wisconsin, along the edge of the retreating ice.",
+      today: "Many nations trace their histories back to the first peoples.",
+      snip: "No record of belief survives.",
+      beliefs: "No written or oral record survives. Stone points and butchered bones show how these hunters lived, but nothing certain is known about what they believed." },
+    archaic: { name: "Archaic peoples and the Old Copper Complex", fam: "arch", alt: "c. 8000 to 1000 BCE", lang: "Unknown",
+      where: "Across the state, with copper working around Lake Superior and Lake Michigan.",
+      today: "Ancestors of later peoples, though which ones is not settled.",
+      snip: "Copper and red ochre in graves hint at ritual care for the dead.",
+      beliefs: "Copper tools and red ochre placed in graves suggest ritual care for the dead. Anything more is interpretation, because no one recorded what these people believed." },
+    woodland: { name: "Woodland peoples", fam: "arch", alt: "Effigy mound builders and Hopewell contacts, c. 1000 BCE to 1200 CE", lang: "Unknown",
+      where: "Southern and central Wisconsin for the effigy mounds, the Mississippi valley for Hopewell contacts.",
+      today: "Several nations, including the Ho-Chunk, count the mound builders among their ancestors.",
+      snip: "Animal-shaped mounds built for burial and ceremony.",
+      beliefs: "Builders shaped earth into panthers, birds, bears and turtles, and also into cones and long lines. The mounds held burials and were places of ceremony. Many scholars link the shapes to clans and to a world divided between sky and earth or water. The builders' own beliefs were not recorded, so modern readings lean on Ho-Chunk, Meskwaki and other nations' traditions." },
+    aztalan: { name: "Aztalan", fam: "arch", alt: "c. 1000 to 1200 CE", lang: "Unknown",
+      where: "Crawfish River near Lake Mills.",
+      today: "Managed as a state park. Which nations descend from its people is debated.",
+      snip: "Platform mounds like those at Cahokia.",
+      beliefs: "Flat-topped platform mounds, a stockade and burials resemble the Mississippian town of Cahokia, where the sun and the cycle of corn were central to ceremony. What people at Aztalan believed is inferred from that link and from the objects they left." },
+    oneota: { name: "Oneota", fam: "arch", alt: "c. 1000 to 1650 CE", lang: "Probably Siouan, ancestors of the Ho-Chunk and the Chiwere peoples",
+      where: "Lakes and rivers of eastern and western Wisconsin, including Lake Winnebago, Green Bay and La Crosse.",
+      today: "Linked to the Ho-Chunk, Ioway, Otoe and Missouria.",
+      snip: "Ceremonial pipes and trade; ties to Ho-Chunk and Chiwere belief.",
+      beliefs: "Oneota pipes, pottery and burials show ceremony and long-distance trade. Descendant nations carry the religious ideas of these ancestors, so see the Ho-Chunk and the Ioway, Otoe and Missouria entries." },
+    hochunk: { name: "Ho-Chunk", fam: "siou", alt: "Winnebago. Ho-Chunk is often translated as People of the Sacred Voice.", lang: "Siouan",
+      where: "Green Bay and Lake Winnebago, later the Wisconsin, Rock and Black rivers.",
+      today: "Ho-Chunk Nation, with lands across central and western Wisconsin and headquarters at Black River Falls.",
+      snip: "Earthmaker, Thunderbirds, the Water Spirit and the Medicine Lodge.",
+      beliefs: "Origin stories begin at Red Banks on Green Bay. Earthmaker made the world and the spirits, including the Thunderbirds and the Water Spirit. Clans belong to an upper, sky division and a lower, earth division. Trickster stories, the Wakdjunkaga cycle, teach through humor and mistakes. The Medicine Lodge teaches healing and long life. Today many Ho-Chunk follow traditional ways, the Native American Church, Christianity, or a mix." },
+    menominee: { name: "Menominee", fam: "alg", alt: "The Wild Rice People", lang: "Algonquian",
+      where: "Mouth of the Menominee River, Green Bay, and the Fox and Wolf river valleys.",
+      today: "Menominee Indian Tribe of Wisconsin, at Keshena.",
+      snip: "Origin at the Menominee River; Bear, thunder beings, Medicine Lodge.",
+      beliefs: "Oral history says the Menominee began at the mouth of the Menominee River, where Bear came out of the earth and became human and other beings joined him as clans. Like other Great Lakes nations, the Menominee honor a Creator, thunder beings and underwater beings. The Medicine Lodge society kept healing and teaching, and the Dream Dance, or Drum Dance, arrived in the 1800s. French missionaries came from the 1660s, and today people follow traditional ways, Christianity, the Native American Church, or a mix." },
+    ojibwe: { name: "Ojibwe", fam: "alg", alt: "Chippewa. Anishinaabe, with the Odawa and Potawatomi", lang: "Algonquian",
+      where: "Sault Ste. Marie, Chequamegon Bay and Madeline Island, then across the northern forests of Wisconsin.",
+      today: "Six bands: Bad River, Red Cliff, Lac Courte Oreilles, Lac du Flambeau, St. Croix and Sokaogon (Mole Lake).",
+      snip: "Gichi-Manidoo, the Midewiwin, clans and the Seven Grandfather Teachings.",
+      beliefs: "Gichi-Manidoo, the Great Spirit, is joined by many other spirits, or manidoog. Oral history tells of a migration west from the Atlantic coast, guided by a prophecy to find the food that grows on water, manoomin or wild rice, and it ends at Madeline Island. The Midewiwin, or Grand Medicine Society, teaches healing and kept its teachings on birchbark scrolls. People belong to clans such as Crane, Loon, Fish, Bear and Marten. The Seven Grandfather Teachings guide life: wisdom, love, respect, bravery, honesty, humility and truth. A Jesuit mission opened at La Pointe in 1665. Today many Ojibwe follow traditional ceremonies, Christianity, or both." },
+    potawatomi: { name: "Potawatomi", fam: "alg", alt: "Bodewadmi, the Keepers of the Fire", lang: "Algonquian",
+      where: "Lower Michigan, then Green Bay and the Door Peninsula, then Milwaukee and Chicago by the 1700s.",
+      today: "Forest County Potawatomi Community, at Crandon, Wabeno and Milwaukee.",
+      snip: "Keepers of the council fire; Midewiwin, Wabeno and Drum Dance.",
+      beliefs: "With the Ojibwe and Odawa, the Potawatomi form the Three Fires, and they were given the role of keeping the council fire. They honor a Great Spirit and many other spirit beings. Ceremonial societies included the Midewiwin and the Wabeno, and the Drum Dance became important in the 1800s. Catholic missions began in the 1600s, and many Forest County Potawatomi today are Catholic and also follow traditional ways." },
+    odawa: { name: "Odawa", fam: "alg", alt: "Ottawa. The name is often glossed as traders", lang: "Algonquian",
+      where: "Georgian Bay and Manitoulin Island, then Chequamegon Bay and Green Bay as refugees in the 1650s to 1670s, later northern Michigan.",
+      today: "No Odawa tribe in Wisconsin. Odawa communities live in Michigan and Ontario.",
+      snip: "Part of the Three Fires; Midewiwin and a Great Spirit.",
+      beliefs: "Part of the Three Fires with the Ojibwe and Potawatomi, the Odawa share the Midewiwin, belief in a Great Spirit and many other spirits, and a clan system. As middlemen in the fur trade they carried goods, news and ceremonies across the Great Lakes." },
+    meskwaki: { name: "Meskwaki", fam: "alg", alt: "Fox. The Red Earth People", lang: "Algonquian",
+      where: "Lower Michigan, then the Fox River valley and Lake Winnebago, later the Wisconsin River, then west of the Mississippi.",
+      today: "Meskwaki Nation at Tama, Iowa.",
+      snip: "A Great Manitou, clan sacred bundles and seasonal ceremonies.",
+      beliefs: "The Meskwaki honor a Great Manitou and many other manitous. Clans hold sacred bundles and keep ceremonies tied to the seasons, with feasts and dances. They fought the French from 1712 to 1733 to defend their lands and trade." },
+    sauk: { name: "Sauk", fam: "alg", alt: "Sac. Asakiwaki", lang: "Algonquian",
+      where: "Saginaw Bay region, then Green Bay, the Wisconsin River and Prairie du Chien, then the Rock River in Illinois.",
+      today: "Sac and Fox communities in Iowa, Kansas and Oklahoma.",
+      snip: "A Great Manitou and clan-held sacred bundles.",
+      beliefs: "The Sauk honor a Great Manitou and care for sacred bundles held by clans. Black Hawk's 1833 autobiography describes the great medicine bundle he kept and the weight of that duty." },
+    kickapoo: { name: "Kickapoo", fam: "alg", alt: "Kiikaapoa", lang: "Algonquian",
+      where: "Southern Wisconsin and the Rock and Wisconsin rivers in the 1600s, later Illinois.",
+      today: "Kickapoo tribes in Kansas, Oklahoma, Texas and Mexico.",
+      snip: "Manitous and bundles; later the Prophet Kenekuk.",
+      beliefs: "Kickapoo traditions center on manitous, clan sacred bundles and seasonal ceremony. In the 1820s in Illinois, the Kickapoo Prophet Kenekuk taught a faith that mixed Christian and traditional ideas." },
+    mascouten: { name: "Mascouten", fam: "alg", alt: "People of the Prairie", lang: "Algonquian",
+      where: "Fox River villages near Lake Winnebago in the 1670s, alongside the Kickapoo and Miami.",
+      today: "Absorbed into the Kickapoo and other nations. No separate tribe exists today.",
+      snip: "Little recorded; a manitou-centered worldview like their neighbors.",
+      beliefs: "Little was recorded. French writers describe a worldview centered on manitous, much like that of their Kickapoo and Miami neighbors." },
+    miami: { name: "Miami", fam: "alg", alt: "Myaamia", lang: "Algonquian",
+      where: "Green Bay and the Fox River in the mid-1600s, then southern Lake Michigan and Indiana.",
+      today: "Miami Tribe of Oklahoma and the Miami Nation of Indiana.",
+      snip: "Manitou-centered belief and clan bundles, mostly known through French writers.",
+      beliefs: "Most records come from French missionaries and traders. They describe a worldview centered on manitous, with sacred bundles and ceremonies tied to clans and villages." },
+    illinois: { name: "Illinois Confederation", fam: "alg", alt: "Peoria, Kaskaskia, Cahokia, Michigamea, Tamaroa and Moingwena", lang: "Algonquian",
+      where: "Northern Illinois along the Illinois and Mississippi rivers, reaching into southern Wisconsin.",
+      today: "Peoria Tribe of Indians of Oklahoma.",
+      snip: "Manitou-centered; early Jesuit missions made many Catholic.",
+      beliefs: "Illinois belief centered on manitous and sacred bundles. Jesuits Marquette and Allouez worked among them, and Marquette opened a mission to the Kaskaskia in 1675, so many Illinois became Catholic." },
+    dakota: { name: "Dakota", fam: "siou", alt: "Santee Sioux, including the Mdewakanton, Wahpekute, Sisseton and Wahpeton", lang: "Siouan",
+      where: "Mille Lacs in Minnesota, with hunting grounds in northwestern Wisconsin until the mid-1700s.",
+      today: "Dakota communities in Minnesota, the Dakotas, Nebraska and Canada, and Dakota people living in Wisconsin.",
+      snip: "Wakan Tanka, Thunder Beings, the pipe and vision seeking.",
+      beliefs: "Wakan Tanka, the Great Mystery, is present in many wakan, or sacred, beings, including the Thunder Beings and the underwater beings. Bdote, where the Minnesota and Mississippi rivers meet, is a place of origin. The sacred pipe, vision seeking and the gathering for dance, the wacipi, are central. The Dakota belong to the Seven Council Fires, the Oceti Sakowin." },
+    chiwere: { name: "Ioway, Otoe and Missouria", fam: "siou", alt: "The Chiwere-speaking peoples", lang: "Siouan",
+      where: "Southwestern Wisconsin and the Mississippi valley before about 1600, later Iowa and Missouri.",
+      today: "Iowa Tribe of Kansas and Nebraska, Iowa Tribe of Oklahoma and the Otoe-Missouria Tribe.",
+      snip: "Wakanda, clan bundles, and a shared early home with the Ho-Chunk.",
+      beliefs: "They honor Wakanda, the Great Mystery, and keep sacred bundles tied to clans. Origin accounts tell of a shared home with the Ho-Chunk near Green Bay before the peoples separated." },
+    wendat: { name: "Wendat and Petun", fam: "iro", alt: "Huron and Tionontati, later Wyandot", lang: "Iroquoian",
+      where: "Chequamegon Bay and the upper Mississippi after fleeing Iroquois attacks in 1649 and 1650, leaving around 1670.",
+      today: "Wyandotte Nation in Oklahoma and other Wyandot communities.",
+      snip: "Sky Woman and her grandsons; the Feast of the Dead.",
+      beliefs: "Wendat teachings tell of Sky Woman, Aataentsic, and her grandsons Yoskeha and Tawiscaron. Orenda is a spiritual power in all things. Every decade or so the Feast of the Dead brought villages together to rebury their dead in a shared grave. A Jesuit mission at La Pointe served the refugees, and many Wendat became Catholic." },
+    oneida: { name: "Oneida", fam: "iro", alt: "Onyota'a:ka, the People of the Standing Stone", lang: "Iroquoian",
+      where: "Central New York. Part of the nation moved to the Green Bay area from the 1820s.",
+      today: "Oneida Nation, near Green Bay and Oneida.",
+      snip: "Sky Woman, the Thanksgiving Address, the Great Law and the longhouse.",
+      beliefs: "Haudenosaunee teachings include the Creation story of Sky Woman, the Thanksgiving Address, the Great Law of Peace and longhouse ceremonies. Handsome Lake's Code, taught from 1799, shaped some communities. Episcopal and Methodist missionaries came early, and many of the Oneida who moved to Wisconsin were Christian. Today church and longhouse are both part of Oneida life." },
+    munsee: { name: "Stockbridge-Munsee", fam: "alg", alt: "Mohican and Munsee Lenape", lang: "Algonquian",
+      where: "Hudson valley and western Massachusetts, then New York, then Lake Winnebago from the 1820s and Bowler from 1856.",
+      today: "Stockbridge-Munsee Community, at Bowler.",
+      snip: "Mohican and Lenape teachings, with Christianity since the 1700s.",
+      beliefs: "Mohican and Munsee Lenape teachings honor a Creator and many spirit beings. Mohican people at Stockbridge, Massachusetts, took up Christianity in the 1700s, and Moravian and Congregational churches have been part of the community since. Today many members hold Christian and Mohican traditions together." },
+    brothertown: { name: "Brothertown", fam: "alg", alt: "Brothertown Indian Nation", lang: "Algonquian (several New England nations)",
+      where: "Southern New England and New York, then the east shore of Lake Winnebago from the 1830s.",
+      today: "Brothertown Indian Nation, seeking federal recognition, with roots at Brothertown and Fond du Lac.",
+      snip: "A Christian community founded with Samson Occom.",
+      beliefs: "The Brothertown community was formed by Christian Mohegan, Pequot, Niantic, Montauk and other New England Indians under the leadership of Samson Occom, a Mohegan Presbyterian minister. They built their own churches in Wisconsin, and older customs continued alongside them." }
+  };
+  const ORDER = ["paleo","archaic","woodland","aztalan","oneida_","oneota","hochunk","menominee","ojibwe","potawatomi","odawa","meskwaki","sauk","kickapoo","mascouten","miami","illinois","dakota","chiwere","wendat","oneida","munsee","brothertown"].filter(function (k) { return N[k]; });
+
+  // Periods. Blob geometry is in degrees (lon, lat, half-width in lon, half-height in lat).
+  const P = [
+    { short: "12,500 BCE", label: "c. 12,500 to 8000 BCE", title: "Paleo-Indian hunters",
+      text: "The ice is pulling back. Small bands follow mammoth, mastodon and caribou along its edge. Nothing survives to say what they called themselves or what they believed.",
+      blobs: [{ ns: ["paleo"], lon: -89.4, lat: 43.4, rx: 2.0, ry: 0.9, label: "Paleo-Indian hunters", ly: -30 }],
+      sites: [{ name: "Hebior mammoth site", lon: -87.9, lat: 42.6, anchor: "start", lx: 10, ly: 4 }, { name: "Boaz mastodon find", lon: -90.4, lat: 43.3, anchor: "end", lx: -10, ly: 4 }] },
+    { short: "8000 BCE", label: "8000 to 1000 BCE", title: "Archaic peoples and the Old Copper Complex",
+      text: "Forests spread and people settle into seasonal rounds of fishing, gathering and hunting. Around Lake Superior, people hammer raw copper into tools and trade it far beyond the region.",
+      blobs: [{ ns: ["archaic"], lon: -90.3, lat: 46.55, rx: 2.0, ry: 0.75, label: "Old Copper Complex" }, { ns: ["archaic"], lon: -89.4, lat: 43.9, rx: 2.0, ry: 0.95, label: "Archaic hunter-gatherers" }] },
+    { short: "1000 BCE", label: "1000 BCE to 1000 CE", title: "Woodland peoples",
+      text: "Pottery, farming and burial mounds spread. In the south, builders shape earth into animal effigies. Along the Mississippi, trade ties to the Hopewell world of Ohio and Illinois reach Trempealeau.",
+      blobs: [{ ns: ["woodland"], lon: -89.4, lat: 43.1, rx: 2.0, ry: 0.75, label: "Effigy mound builders", ly: 20 }, { ns: ["woodland"], lon: -90.0, lat: 45.9, rx: 2.2, ry: 0.8, label: "Northern Woodland peoples" }, { ns: ["woodland"], lon: -91.35, lat: 44.0, rx: 0.5, ry: 0.35, label: "Hopewell contacts", anchor: "start", lx: 40, ly: -10 }] },
+    { short: "1000 CE", label: "1000 to 1600 CE", title: "Aztalan, Oneota and the ancestors of today's nations",
+      text: "A walled town rises at Aztalan, and large Oneota villages line the lakes and rivers. Menominee tradition places their origin at the mouth of the Menominee River. After a long migration, the Ojibwe reach Madeline Island, which scholars date to the 1500s or 1600s.",
+      blobs: [{ ns: ["aztalan"], lon: -88.86, lat: 43.07, rx: 0.45, ry: 0.25, label: "Aztalan", anchor: "start", lx: 36, ly: 4 }, { ns: ["oneota"], lon: -88.5, lat: 44.2, rx: 1.0, ry: 0.6, label: "Oneota villages" }, { ns: ["oneota"], lon: -91.1, lat: 43.9, rx: 0.7, ry: 0.4, label: "Oneota (La Crosse)" }, { ns: ["menominee"], lon: -87.95, lat: 45.35, rx: 0.8, ry: 0.5, label: "Menominee ancestors" }, { ns: ["ojibwe"], lon: -90.7, lat: 46.8, rx: 0.65, ry: 0.35, label: "Ojibwe at Madeline Island", anchor: "start", lx: 45, ly: -22 }] },
+    { short: "1634", label: "1634", title: "Nicolet at Green Bay",
+      text: "Jean Nicolet meets the Ho-Chunk at Green Bay. The Menominee live to the north. Dakota hunt in the northwest and Illinois villages lie to the south. The Ojibwe are still at Sault Ste. Marie and the Potawatomi are in lower Michigan.",
+      blobs: [{ ns: ["hochunk"], lon: -88.4, lat: 44.4, rx: 1.0, ry: 0.6, label: "Ho-Chunk" }, { ns: ["menominee"], lon: -87.9, lat: 45.4, rx: 0.8, ry: 0.5, label: "Menominee" }, { ns: ["dakota"], lon: -92.9, lat: 45.9, rx: 1.1, ry: 0.9, label: "Dakota" }, { ns: ["chiwere"], lon: -91.3, lat: 43.2, rx: 1.0, ry: 0.6, label: "Ioway and Chiwere" }, { ns: ["illinois"], lon: -89.4, lat: 41.95, rx: 1.7, ry: 0.5, label: "Illinois Confederation" }, { ns: ["ojibwe"], lon: -84.95, lat: 46.5, rx: 0.55, ry: 0.4, label: "Ojibwe", anchor: "end", lx: 20, ly: 50 }, { ns: ["potawatomi"], lon: -85.5, lat: 43.2, rx: 0.8, ry: 0.8, label: "Potawatomi" }] },
+    { short: "1670", label: "1670", title: "Refugees and the Fox Valley",
+      text: "Iroquois raids push Potawatomi, Odawa, Wendat, Meskwaki, Sauk, Miami, Mascouten and Kickapoo west into Wisconsin. Green Bay and the Fox River valley fill with villages, and French Jesuits open missions at La Pointe and Green Bay.",
+      blobs: [{ ns: ["menominee"], lon: -88.0, lat: 45.4, rx: 0.8, ry: 0.5, label: "Menominee" }, { ns: ["hochunk"], lon: -88.75, lat: 44.45, rx: 0.6, ry: 0.4, label: "Ho-Chunk", anchor: "end", lx: -30, ly: -14 }, { ns: ["potawatomi"], lon: -87.35, lat: 45.05, rx: 0.5, ry: 0.45, label: "Potawatomi", anchor: "start", lx: 40, ly: 0 }, { ns: ["sauk"], lon: -87.95, lat: 44.55, rx: 0.3, ry: 0.2, label: "Sauk", anchor: "start", lx: 24, ly: 22 }, { ns: ["meskwaki"], lon: -88.6, lat: 44.0, rx: 0.5, ry: 0.28, label: "Meskwaki", anchor: "start", lx: 38, ly: 4 }, { ns: ["mascouten","kickapoo","miami"], lon: -89.35, lat: 43.65, rx: 0.65, ry: 0.3, label: "Mascouten, Kickapoo, Miami", anchor: "end", lx: -30, ly: 4 }, { ns: ["odawa","wendat"], lon: -91.0, lat: 46.55, rx: 0.6, ry: 0.35, label: "Odawa and Wendat", anchor: "end", lx: -45, ly: 0 }, { ns: ["ojibwe"], lon: -89.6, lat: 46.2, rx: 1.1, ry: 0.45, label: "Ojibwe", ly: 30 }, { ns: ["dakota"], lon: -92.7, lat: 45.5, rx: 1.0, ry: 0.8, label: "Dakota" }, { ns: ["illinois"], lon: -89.3, lat: 41.95, rx: 1.6, ry: 0.5, label: "Illinois Confederation" }] },
+    { short: "1730", label: "1730", title: "After the Fox Wars",
+      text: "The Meskwaki are driven from the Fox Valley. The Ojibwe spread through the northern forests and push the Dakota west. The Ho-Chunk reclaim the Wisconsin River, and the Potawatomi spread south toward Milwaukee and Chicago.",
+      blobs: [{ ns: ["ojibwe"], lon: -90.2, lat: 46.0, rx: 2.2, ry: 0.8, label: "Ojibwe" }, { ns: ["dakota"], lon: -93.2, lat: 45.0, rx: 0.9, ry: 0.9, label: "Dakota" }, { ns: ["menominee"], lon: -88.2, lat: 45.0, rx: 1.0, ry: 0.6, label: "Menominee" }, { ns: ["hochunk"], lon: -89.6, lat: 44.0, rx: 1.2, ry: 0.7, label: "Ho-Chunk" }, { ns: ["sauk","meskwaki"], lon: -90.6, lat: 43.1, rx: 0.9, ry: 0.4, label: "Sauk and Meskwaki" }, { ns: ["potawatomi"], lon: -87.95, lat: 43.3, rx: 0.55, ry: 0.95, label: "Potawatomi", anchor: "start", lx: 50, ly: 0 }, { ns: ["miami","illinois"], lon: -88.8, lat: 41.95, rx: 1.4, ry: 0.45, label: "Miami and Illinois" }, { ns: ["kickapoo"], lon: -89.2, lat: 42.7, rx: 0.6, ry: 0.3, label: "Kickapoo", anchor: "start", lx: 50, ly: 24 }] },
+    { short: "1830", label: "1830", title: "Before the removals",
+      text: "The Menominee hold the northeast, the Ho-Chunk the south and west, the Potawatomi the southeast and the Ojibwe the north. After 1832 the Sauk and Meskwaki are pushed west of the Mississippi. Oneida, Stockbridge-Munsee and Brothertown families arrive from the east.",
+      blobs: [{ ns: ["ojibwe"], lon: -90.4, lat: 46.1, rx: 2.3, ry: 0.8, label: "Ojibwe" }, { ns: ["menominee"], lon: -88.5, lat: 45.0, rx: 1.2, ry: 0.8, label: "Menominee", ly: -30 }, { ns: ["hochunk"], lon: -90.0, lat: 43.6, rx: 1.7, ry: 0.7, label: "Ho-Chunk" }, { ns: ["potawatomi"], lon: -87.95, lat: 43.2, rx: 0.6, ry: 0.9, label: "Potawatomi", anchor: "start", lx: 50, ly: 0 }, { ns: ["sauk","meskwaki"], lon: -91.1, lat: 42.2, rx: 0.9, ry: 0.4, label: "Sauk and Meskwaki" }, { ns: ["dakota"], lon: -93.2, lat: 44.9, rx: 0.9, ry: 0.8, label: "Dakota" }, { ns: ["oneida"], lon: -88.15, lat: 44.5, rx: 0.28, ry: 0.2, label: "Oneida", anchor: "start", lx: 26, ly: 4 }, { ns: ["munsee","brothertown"], lon: -88.4, lat: 44.05, rx: 0.3, ry: 0.2, label: "Stockbridge and Brothertown", anchor: "start", lx: 28, ly: 6 }] },
+    { short: "Today", label: "Today", title: "Eleven tribes",
+      text: "Wisconsin is home to eleven federally recognized tribes: six Ojibwe bands, the Menominee, the Ho-Chunk, the Forest County Potawatomi, the Oneida and Stockbridge-Munsee. Their lands are a small part of what their ancestors held. The Brothertown Indian Nation, still seeking federal recognition, also has roots in the state.",
+      blobs: [],
+      marks: [
+        { ns: ["ojibwe"], lon: -90.82, lat: 46.85, label: "Red Cliff", anchor: "start", lx: 10, ly: -8 },
+        { ns: ["ojibwe"], lon: -90.65, lat: 46.55, label: "Bad River", anchor: "start", lx: 10, ly: 14 },
+        { ns: ["ojibwe"], lon: -91.45, lat: 45.95, label: "Lac Courte Oreilles", anchor: "end", lx: -10, ly: 4 },
+        { ns: ["ojibwe"], lon: -89.9, lat: 46.0, label: "Lac du Flambeau", anchor: "start", lx: 10, ly: 4 },
+        { ns: ["ojibwe"], lon: -92.2, lat: 45.75, label: "St. Croix", anchor: "start", lx: 10, ly: 4 },
+        { ns: ["ojibwe"], lon: -88.95, lat: 45.45, label: "Mole Lake", anchor: "start", lx: 10, ly: 18 },
+        { ns: ["potawatomi"], lon: -88.85, lat: 45.6, label: "Forest County Potawatomi", anchor: "start", lx: 10, ly: -4 },
+        { ns: ["menominee"], lon: -88.65, lat: 44.95, label: "Menominee", anchor: "start", lx: 10, ly: -4 },
+        { ns: ["munsee"], lon: -88.95, lat: 44.86, label: "Stockbridge-Munsee", anchor: "end", lx: -10, ly: 14 },
+        { ns: ["oneida"], lon: -88.2, lat: 44.5, label: "Oneida", anchor: "start", lx: 10, ly: 4 },
+        { ns: ["hochunk"], lon: -90.85, lat: 44.3, label: "Ho-Chunk", anchor: "end", lx: -10, ly: 4 },
+        { ns: ["brothertown"], lon: -88.3, lat: 44.1, label: "Brothertown (not federally recognized)", anchor: "end", lx: -10, ly: 4, hollow: true }
+      ] }
+  ];
+
+  const NSV = "http://www.w3.org/2000/svg";
+  const PX = function (lon) { return (lon + 94.5) * 71; };
+  const PY = function (lat) { return (48 - lat) * 100; };
+  const svg = document.getElementById("natMap");
+  function mk(tag, attrs, text, parent) {
+    const n = document.createElementNS(NSV, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    (parent || svg).appendChild(n);
+    return n;
+  }
+  function pts(a) { return a.map(function (p) { return PX(p[0]).toFixed(1) + "," + PY(p[1]).toFixed(1); }).join(" "); }
+  function famVar(id) { return "var(" + FAM[N[id].fam].v + ")"; }
+
+  // Base map: land, lakes, state outline
+  const SUP = [[-92.09,46.75],[-91.60,46.76],[-91.38,46.79],[-91.10,46.86],[-90.97,46.92],[-90.84,46.95],[-90.82,46.85],[-90.82,46.80],[-90.89,46.67],[-90.88,46.59],[-90.65,46.60],[-90.42,46.57]];
+  const UP = [[-90.05,46.65],[-89.70,46.80],[-89.30,46.87],[-88.90,47.00],[-88.60,47.20],[-87.90,47.47],[-88.20,47.10],[-88.40,46.95],[-88.45,46.78],[-87.80,46.90],[-87.40,46.55],[-86.65,46.43],[-85.99,46.67],[-85.20,46.70],[-84.95,46.77]];
+  const MI_LAKE = [[-87.80,42.40],[-87.60,41.90],[-87.35,41.62],[-86.90,41.72],[-86.50,42.10],[-86.20,42.78],[-86.30,43.23],[-86.45,43.96],[-86.25,44.63],[-86.05,44.90],[-85.55,45.20],[-85.25,45.32],[-84.95,45.37],[-84.73,45.78],[-84.72,45.87],[-85.50,46.05],[-86.25,45.95],[-86.70,45.75],[-87.05,45.75],[-87.60,45.10],[-87.75,45.05],[-87.85,44.89],[-88.00,44.53],[-87.90,43.50]];
+  const WI = SUP.concat([
+    [-90.17,46.43],[-90.12,46.28],[-89.12,46.14],[-88.65,46.03],[-88.14,45.97],[-88.07,45.78],[-87.83,45.55],[-87.70,45.30],[-87.60,45.10],
+    [-87.75,45.05],[-87.85,44.89],[-88.00,44.53],
+    [-87.85,44.62],[-87.62,44.78],[-87.42,44.85],[-87.30,45.03],[-87.12,45.20],[-87.00,45.30],
+    [-86.93,45.30],[-87.05,45.12],[-87.12,44.98],[-87.20,44.85],[-87.35,44.62],[-87.50,44.46],[-87.56,44.15],[-87.65,44.09],[-87.70,43.75],[-87.87,43.39],[-87.90,43.04],[-87.78,42.73],[-87.82,42.58],[-87.80,42.49],
+    [-90.64,42.49],[-90.99,42.72],[-91.15,43.05],[-91.23,43.57],[-91.25,43.80],[-91.43,44.00],[-91.92,44.33],[-92.15,44.44],[-92.80,44.74],
+    [-92.75,44.97],[-92.65,45.40],[-92.68,45.78],[-92.37,45.98],[-92.29,46.08],[-92.29,46.66],[-92.10,46.71]
+  ]);
+  window.__WI = { SUP: SUP, UP: UP, MI_LAKE: MI_LAKE, WI: WI };
+  mk("rect", { x: 0, y: 0, width: 710, height: 620, fill: "var(--bg)" });
+  mk("polygon", { class: "water", points: pts([[-92.1,46.77]].concat(SUP, UP, [[-84.4,46.8],[-84.4,48.5],[-92.1,48.5]])) });
+  mk("polygon", { class: "water", points: pts(MI_LAKE) });
+  mk("polygon", { class: "wi", points: pts(WI) });
+  mk("text", { class: "lakelab", x: PX(-89.4), y: PY(47.5) }, "Lake Superior");
+  mk("text", { class: "lakelab", x: PX(-86.9), y: PY(43.7) }, "Lake Michigan");
+  mk("line", { class: "scale", x1: 24, x2: 169, y1: 596, y2: 596 });
+  mk("line", { class: "scale", x1: 24, x2: 24, y1: 590, y2: 602 });
+  mk("line", { class: "scale", x1: 169, x2: 169, y1: 590, y2: 602 });
+  mk("text", { class: "scalelab", x: 24, y: 584 }, "100 miles");
+  const dyn = mk("g", { id: "natDyn" });
+
+  // Legend
+  const legend = document.getElementById("legend");
+  Object.keys(FAM).forEach(function (k) {
+    const li = document.createElement("li");
+    const sw = document.createElement("span");
+    sw.className = "sw";
+    sw.style.setProperty("--c", "var(" + FAM[k].v + ")");
+    li.appendChild(sw);
+    li.appendChild(document.createTextNode(FAM[k].name));
+    legend.appendChild(li);
+  });
+
+  // Presence per period
+  function present(p) {
+    const set = {};
+    (p.blobs || []).forEach(function (b) { b.ns.forEach(function (n) { set[n] = true; }); });
+    (p.marks || []).forEach(function (b) { b.ns.forEach(function (n) { set[n] = true; }); });
+    return set;
+  }
+  const pres = P.map(present);
+
+  // Tabs
+  const tabs = document.getElementById("ptabs");
+  P.forEach(function (p, i) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "ptab"; b.textContent = p.short;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { show(i); });
+    tabs.appendChild(b);
+  });
+
+  // Matrix
+  const matrix = document.getElementById("matrix");
+  (function () {
+    const thead = document.createElement("thead");
+    const hr = document.createElement("tr");
+    const corner = document.createElement("th");
+    corner.className = "rowh"; corner.textContent = "People";
+    hr.appendChild(corner);
+    P.forEach(function (p, i) {
+      const th = document.createElement("th");
+      th.setAttribute("data-p", i);
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = p.short;
+      b.addEventListener("click", function () { show(i); });
+      th.appendChild(b);
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    matrix.appendChild(thead);
+    const tb = document.createElement("tbody");
+    ORDER.forEach(function (id) {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th");
+      th.className = "rowh"; th.scope = "row";
+      const a = document.createElement("a");
+      a.href = "#n-" + id; a.textContent = N[id].name;
+      th.appendChild(a);
+      tr.appendChild(th);
+      P.forEach(function (p, i) {
+        const td = document.createElement("td");
+        td.setAttribute("data-p", i);
+        if (pres[i][id]) {
+          const d = document.createElement("span");
+          d.className = "mdot";
+          d.style.setProperty("--c", famVar(id));
+          d.setAttribute("role", "img");
+          d.setAttribute("aria-label", "Present in " + p.label);
+          td.appendChild(d);
+        }
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    matrix.appendChild(tb);
+  })();
+
+  // Directory
+  const dir = document.getElementById("dir");
+  ORDER.forEach(function (id) {
+    const n = N[id];
+    const art = document.createElement("article");
+    art.className = "nation"; art.id = "n-" + id;
+    if (NIMG[id]) art.appendChild(picFig(NIMG[id], "nat"));
+    const h = document.createElement("h4");
+    const sw = document.createElement("span");
+    sw.className = "sw"; sw.style.setProperty("--c", famVar(id));
+    h.appendChild(sw);
+    h.appendChild(document.createTextNode(n.name));
+    art.appendChild(h);
+    const alt = document.createElement("p");
+    alt.className = "alt"; alt.textContent = n.alt;
+    art.appendChild(alt);
+    const dl = document.createElement("dl");
+    [["Language", n.lang], ["Where", n.where], ["Today", n.today]].forEach(function (r) {
+      const dt = document.createElement("dt"); dt.textContent = r[0];
+      const dd = document.createElement("dd"); dd.textContent = r[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    art.appendChild(dl);
+    const bel = document.createElement("p");
+    bel.className = "bel"; bel.textContent = n.beliefs;
+    art.appendChild(bel);
+    dir.appendChild(art);
+  });
+
+  function show(i) {
+    const p = P[i];
+    tabs.querySelectorAll(".ptab").forEach(function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+    document.querySelectorAll("#matrix [data-p]").forEach(function (c) {
+      c.classList.toggle("cur", Number(c.getAttribute("data-p")) === i);
+    });
+    while (dyn.firstChild) dyn.removeChild(dyn.firstChild);
+    const blobs = (p.blobs || []).slice().sort(function (a, b) { return b.rx * b.ry - a.rx * a.ry; });
+    blobs.forEach(function (b) {
+      mk("ellipse", { class: "blob", cx: PX(b.lon), cy: PY(b.lat), rx: b.rx * 71, ry: b.ry * 100, style: "--c:" + famVar(b.ns[0]) }, null, dyn);
+    });
+    blobs.forEach(function (b) {
+      mk("text", { class: "blabel", x: PX(b.lon) + (b.lx || 0), y: PY(b.lat) + (b.ly || 0) + 4, "text-anchor": b.anchor || "middle" }, b.label || N[b.ns[0]].name, dyn);
+    });
+    (p.sites || []).forEach(function (s) {
+      const x = PX(s.lon), y = PY(s.lat);
+      mk("polygon", { class: "site", points: (x) + "," + (y - 7) + " " + (x + 7) + "," + y + " " + x + "," + (y + 7) + " " + (x - 7) + "," + y, style: "--c:var(--fam-arch)" }, null, dyn);
+      mk("text", { class: "blabel", x: x + (s.lx || 0), y: y + (s.ly || 0), "text-anchor": s.anchor || "start" }, s.name, dyn);
+    });
+    (p.marks || []).forEach(function (m) {
+      mk("circle", { class: "mark" + (m.hollow ? " hollow" : ""), cx: PX(m.lon), cy: PY(m.lat), r: 6, style: "--c:" + famVar(m.ns[0]) }, null, dyn);
+      mk("text", { class: "blabel", x: PX(m.lon) + (m.lx || 0), y: PY(m.lat) + (m.ly || 0), "text-anchor": m.anchor || "start" }, m.label, dyn);
+    });
+    document.getElementById("npLabel").textContent = p.label;
+    document.getElementById("npTitle").textContent = p.title;
+    document.getElementById("npText").textContent = p.text;
+    const ul = document.getElementById("npList");
+    while (ul.firstChild) ul.removeChild(ul.firstChild);
+    ORDER.forEach(function (id) {
+      if (!pres[i][id]) return;
+      const li = document.createElement("li");
+      const sw = document.createElement("span");
+      sw.className = "sw"; sw.style.setProperty("--c", famVar(id));
+      const box = document.createElement("div");
+      const a = document.createElement("a");
+      a.href = "#n-" + id; a.textContent = N[id].name;
+      const strong = document.createElement("strong");
+      strong.appendChild(a);
+      const sn = document.createElement("span");
+      sn.className = "snip"; sn.textContent = N[id].snip;
+      box.appendChild(strong); box.appendChild(sn);
+      li.appendChild(sw); li.appendChild(box);
+      ul.appendChild(li);
+    });
+  }
+  show(4);
+})();
+
+// Archaeology map
+(function () {
+  const G = window.__WI;
+  const svg = document.getElementById("arcMap");
+  if (!G || !svg) return;
+  const NSV = "http://www.w3.org/2000/svg";
+  const PX = function (lon) { return (lon + 94.5) * 71; };
+  const PY = function (lat) { return (48 - lat) * 100; };
+  function mk(tag, attrs, text, parent) {
+    const n = document.createElementNS(NSV, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    (parent || svg).appendChild(n);
+    return n;
+  }
+  function pts(a) { return a.map(function (p) { return PX(p[0]).toFixed(1) + "," + PY(p[1]).toFixed(1); }).join(" "); }
+
+  const SITES = [
+ {
+  "type": "standing",
+  "name": "Raddatz Rockshelter",
+  "place": "Natural Bridge State Park, Sauk County",
+  "age": "From about 9000 to 8000 BCE",
+  "lon": -89.931,
+  "lat": 43.348,
+  "approx": true,
+  "found": "A sandstone shelter dug in 1957 by Warren Wittry of the Wisconsin Historical Society. It held charred wood from fire pits, antler tools, and bones of 50 kinds of vertebrates and 15 kinds of mollusks.",
+  "use": "Early use looks periodic, perhaps hunting trips or a seasonal camp. Later the shelter was occupied year round.",
+  "status": "Reached by about 3.5 miles of trails in Natural Bridge State Park, which has no amenities. Listed on the National Register in 1978."
+ },
+ {
+  "type": "standing",
+  "name": "Roche-a-Cri petroglyphs and pictographs",
+  "place": "Friendship, Adams County",
+  "age": "Carvings before 900 CE; paintings about 400 to 500 years old",
+  "lon": -89.8178,
+  "lat": 44.0017,
+  "approx": false,
+  "found": "Carved and painted rock art on a sandstone mound, including figures resembling birds, canoes, and geometric designs. Some carvings show vandalism from the 1800s.",
+  "use": "The artists are believed to be ancestors of the Ho-Chunk. The DNR says the amount of art suggests the mound had special significance, but the meaning of the designs is not known.",
+  "status": "Open in Roche-a-Cri State Park, with interpretive panels, a map on the mound, and a stairway and observation platforms. Listed on the National Register in 1981."
+ },
+ {
+  "type": "standing",
+  "name": "Wyalusing mounds and Sentinel Ridge",
+  "place": "Wyalusing State Park, Grant County",
+  "age": "Mostly Middle to early Late Woodland",
+  "lon": -91.10861,
+  "lat": 42.97972,
+  "approx": true,
+  "found": "More than 130 mounds were recorded since the 1880s and 69 survive, including small cones, short lines, bears, a tailed effigy and compound mounds. The Sentinel Hill group is 28 mounds in single lines along bluff crests above the Mississippi and Wisconsin Rivers.",
+  "use": "Many cone-shaped mounds hold burials. Effigy mounds may have had religious or territorial meaning; the DNR says 'we may never know.' The age estimates are tentative because the mounds were not professionally excavated.",
+  "status": "Inside Wyalusing State Park, a state park with hiking trails and camping. The mounds are a National Register archaeological district."
+ },
+ {
+  "type": "standing",
+  "name": "Trempealeau mounds and camps",
+  "place": "Perrot State Park, Trempealeau County",
+  "age": "Hopewell mounds c. 100 to 400 CE; effigy mounds c. 700 to 1100 CE",
+  "lon": -91.44,
+  "lat": 44.01,
+  "approx": true,
+  "found": "Surveys in 1928 and 1930 mapped about 90 mounds, mostly round mounds with several burials in bark-lined pits. Grave goods included copper, obsidian and pipestone from distant sources. Camp sites held stone tools, pottery and hearths, and Oneota pits lie on a point near the nature shelter. Many mounds were lost to plowing and development.",
+  "use": "The excavator Will McKern saw the round mounds as a northern extension of Hopewell culture, and the area is described as a secondary Hopewell center. The camps appear to be repeated, often seasonal, stops.",
+  "status": "Inside Perrot State Park, which has trails and a nature center with displays. The sources do not say which mounds are marked for visitors."
+ },
+ {
+  "type": "standing",
+  "name": "Beloit College effigy mounds",
+  "place": "Beloit, Rock County",
+  "age": "c. 400 to 1200 CE",
+  "lon": -89.031,
+  "lat": 42.503,
+  "approx": true,
+  "found": "Twenty conical, linear, and animal effigy mounds remain on campus; five more were leveled by building projects. One is a turtle that inspired the college's symbol and unofficial mascot.",
+  "use": "Mostly burials with likely ritual meaning; they may have marked territories or gathering places. Some may be cenotaphs, and the turtle may show a spirit being rather than a real turtle.",
+  "status": "On a private college campus. The mounds are catalogued burial sites and cannot be disturbed without a permit from the Wisconsin Historical Society director."
+ },
+ {
+  "type": "standing",
+  "name": "Observatory Hill mounds",
+  "place": "UW-Madison campus, Madison, Dane County",
+  "age": "c. 650 to 1200 CE",
+  "lon": -89.41,
+  "lat": 43.0761,
+  "approx": false,
+  "found": "Two surviving effigy mounds on the University of Wisconsin-Madison campus, one shaped like a bird and one like a double-tailed turtle or water spirit. A panther effigy and a linear mound in the group were destroyed in the twentieth century.",
+  "use": "Built by Late Woodland people; the source offers no further reading of their meaning.",
+  "status": "On the UW-Madison campus and listed on the National Register of Historic Places in 2004. The source does not describe visiting rules."
+ },
+ {
+  "type": "standing",
+  "name": "Lizard Mound State Park",
+  "place": "Town of Farmington, Washington County",
+  "age": "c. 650 to 1300 CE",
+  "lon": -88.139,
+  "lat": 43.464,
+  "approx": false,
+  "found": "Twenty-eight effigy mounds, including two large bird effigies, seven long-tailed panther forms and the spread-eagle Lizard Mound. An 1883 survey mapped 47 mounds, and the original group likely had at least 60. Burials were placed in pits beneath the mounds, sometimes with clay pots, projectile points, pipes, bone harpoons and beads.",
+  "use": "Excavations in 1960 found the dead placed in pits with mounds built over them. The shapes may have had religious or clan meaning, but this is unconfirmed.",
+  "status": "Managed by the Wisconsin DNR since 2021 (returned from Washington County). A self-guided trail with markers winds through the park. Hours and fees are not given in the source."
+ },
+ {
+  "type": "standing",
+  "name": "Devil's Lake mounds",
+  "place": "Devil's Lake State Park, Sauk County",
+  "age": "c. 700 to 1200 CE",
+  "lon": -89.71306,
+  "lat": 43.41472,
+  "approx": true,
+  "found": "Conical, linear, and effigy mounds at the north and south ends of the lake. The park's effigies include shapes resembling a lynx and a sparrow, across from the nature center.",
+  "use": "The mounds are burial sites. The lake itself held sacred meaning for Native peoples long before settlers arrived.",
+  "status": "In Devil's Lake State Park (S5975 Park Road), which has trails, campgrounds and a nature center with exhibits."
+ },
+ {
+  "type": "standing",
+  "name": "Panther Intaglio",
+  "place": "Fort Atkinson, Jefferson County",
+  "age": "c. 700 to 1200 CE",
+  "lon": -88.8545,
+  "lat": 42.9252,
+  "approx": false,
+  "found": "A rare reverse effigy: a figure dug into the ground as a depression about 125 feet long and 2 feet deep, rather than piled up as a mound. It sits at 1236 Riverside Dr. on the north side of the Rock River.",
+  "use": "Increase Lapham called it a lizard because he did not know what it showed; later archaeologists called it a panther or water spirit. Water spirits are linked to the lowerworld, which may explain why many intaglios are depressions.",
+  "status": "In a small city park; the Daughters of the American Revolution bought the site in 1910 to preserve it. Hours and fees are not given in the source."
+ },
+ {
+  "type": "standing",
+  "name": "General Atkinson mound group",
+  "place": "Town of Koshkonong, Jefferson County",
+  "age": "c. 700 to 1100 CE",
+  "lon": -88.84,
+  "lat": 42.927,
+  "approx": true,
+  "found": "A group of 72 mounds was recorded in 1908, including conical, linear, bird and long-tailed animal effigies. Housing destroyed 27, and 11 survive in the park, from 75 to 222 feet long.",
+  "use": "The long-tailed forms were once called turtles but are now thought to show water spirits or underground water panthers.",
+  "status": "Public county park, Jefferson County Indian Mounds and Trail Park, on Koshkonong Mounds Road, with an old Indian trail. Hours are not given in the sources seen."
+ },
+ {
+  "type": "standing",
+  "name": "Burrows Park bird effigy",
+  "place": "Lake Mendota shore, Madison, Dane County",
+  "age": "Undated; effigy mounds in the state mostly date after about 700 CE",
+  "lon": -89.384,
+  "lat": 43.075,
+  "approx": true,
+  "found": "A bird effigy mound with a 128 foot wingspan in a small lakeside park. A fox or canine-like effigy once beside it was destroyed. Looters damaged the bird, and the WPA restored it under Charles E. Brown.",
+  "use": "The exact purpose of effigy mounds is not entirely understood. Mounds often, but not always, hold burials and are sacred to modern Native Americans.",
+  "status": "City of Madison park."
+ },
+ {
+  "type": "standing",
+  "name": "Kingsley Bend mound group",
+  "place": "Near Wisconsin Dells, Columbia County",
+  "age": "Undated; effigy mounds in the state mostly date after about 700 CE",
+  "lon": -89.7788,
+  "lat": 43.6374,
+  "approx": true,
+  "found": "A water spirit mound, long linear mounds, a line of large conical mounds, two bear effigies, and across Highway 16 an eagle-like bird effigy and a tapering linear mound.",
+  "use": "The Ho-Chunk regard the mounds as an important cultural and sacred place. The water spirit mound faces nearby springs.",
+  "status": "Owned by the Ho-Chunk Nation since 2006; visitors welcome if respectful. Mounds near the parking area are easy to reach."
+ },
+ {
+  "type": "standing",
+  "name": "Cassville Bluffs bird effigy",
+  "place": "Southeast of Cassville, Grant County",
+  "age": "Undated; effigy mounds in the state mostly date after about 700 CE",
+  "lon": -90.9892,
+  "lat": 42.715,
+  "approx": true,
+  "found": "A single large bird effigy with a 270 foot wingspan along a bluff edge high above the Mississippi River. It was documented by T.H. Lewis in the late 1800s.",
+  "use": "Not known; the source gives no interpretation.",
+  "status": "Cassville Bluffs State Natural Area, free, reached from Sand Lake Road off Highway 133."
+ },
+ {
+  "type": "standing",
+  "name": "High Cliff effigy mounds",
+  "place": "Sherwood, Calumet County",
+  "age": "Undated; effigy mounds in the state mostly date after about 700 CE",
+  "lon": -88.2753,
+  "lat": 44.1735,
+  "approx": true,
+  "found": "Six long-tailed effigies and several conical mounds on the limestone cliff edge above Lake Winnebago. The group once also had a bird, a probable bear and many water spirit or panther mounds. Lapham recorded some in 1855.",
+  "use": "The cliffs were considered sacred and used by early Native Americans for burials and ceremonies.",
+  "status": "High Cliff State Park, with an interpretive trail and observation tower."
+ },
+ {
+  "type": "standing",
+  "name": "Sheboygan Indian Mound Park",
+  "place": "Sheboygan, Sheboygan County",
+  "age": "Effigy mounds generally date after about 700 CE",
+  "lon": -87.725,
+  "lat": 43.75,
+  "approx": true,
+  "found": "The group once had 33 conical and effigy mounds, mostly deer and panther forms plus one intaglio. Eighteen mounds remain, 16 of them restored under the Milwaukee Public Museum.",
+  "use": "Wisconsin mounds are generally associated with burying the dead. The specific meaning of the forms here is not stated.",
+  "status": "City-run park, free admission, open April 1 to November 1, with a nature trail and signs."
+ },
+ {
+  "type": "standing",
+  "name": "Man Mound",
+  "place": "Greenfield, Sauk County",
+  "age": "c. 750 to 1200 CE",
+  "lon": -89.6708,
+  "lat": 43.4886,
+  "approx": false,
+  "found": "A human-shaped earthwork with two horns or a horned headdress, originally 214 feet long and 2.5 feet high. A road and a cow pasture wore away the legs and feet, so it is about 50 feet shorter now. It is described as the only surviving human-shaped effigy mound in North America.",
+  "use": "It may have been religious or ceremonial and may show a ceremonial leader. It has not been excavated, but it is hypothesized to be a burial.",
+  "status": "County park since 1908 and a National Historic Landmark since 2016. Hours and fees are not given in the sources seen."
+ },
+ {
+  "type": "standing",
+  "name": "Aztalan",
+  "place": "Lake Mills area, Jefferson County",
+  "age": "c. 900 to 1200 or 1300 CE",
+  "lon": -88.8628,
+  "lat": 43.0656,
+  "approx": false,
+  "found": "A walled town on the Crawfish River with three remaining flat-topped platform mounds, log stockades with bastions, houses around a plaza, storage pits, shell middens and fish weirs. Trade goods included Upper Peninsula copper, Gulf Coast shell and Mill Creek chert.",
+  "use": "Scholars think the platform mounds held ceremonies, storage or lodging for high-ranking people, and are unsure which. The stockades may have been defensive, ceremonial or both, and why the town was abandoned is not known.",
+  "status": "Aztalan State Park, 172 acres, open to the public since 1952; National Historic Landmark. Part of the stockade was reconstructed in 1968."
+ },
+ {
+  "type": "standing",
+  "name": "Upper Wakanda Park mound group",
+  "place": "Menomonie, Dunn County",
+  "age": "c. 1000 to 1400 CE",
+  "lon": -91.918,
+  "lat": 44.879,
+  "approx": true,
+  "found": "Three large oval mounds remain on a ridge over Lake Menomin, with 17 more flooded by a 1950s dam. Fourteen mounds were excavated and dated by radiocarbon.",
+  "use": "Digs found burials and stone concentrations called altars, plus one person cremated wearing a clay face mask.",
+  "status": "Free park, phone (715) 232-1664 for current information."
+ },
+ {
+  "type": "found",
+  "name": "Schaefer and Hebior mammoth sites",
+  "place": "Town of Paris, Kenosha County",
+  "age": "About 14,500 years ago",
+  "lon": -88.013,
+  "lat": 42.617,
+  "approx": true,
+  "found": "About 80 percent of a mammoth skeleton at the Schaefer site and about 90 percent of another at the nearby Hebior site, both with V-shaped cut marks and stone butchering tools. An earthmover hit a mammoth thigh bone at Schaefer in 1964 while draining a marshy field. David Overstreet of Marquette University led the 1994 dig at Hebior.",
+  "use": "Archaeologists think people butchered both mammoths. Excavator Dan Joyce suggests hunters killed one with thrusting spears near the edge of a glacial lake, and that the sites may be proto-Clovis, a precursor to the Clovis way of life.",
+  "status": "The bones are displayed at the Kenosha Public Museum."
+ },
+ {
+  "type": "found",
+  "name": "Boaz mastodon",
+  "place": "Boaz, Richland County",
+  "age": "About 12,100 to 12,200 years ago",
+  "lon": -90.527,
+  "lat": 43.331,
+  "approx": true,
+  "found": "A mastodon skeleton, about two-thirds complete and missing its tusks, found in 1897 in an eroded creek bank by the sons of farmer John Dosch. A fluted quartzite spear point was later sent to the university. Recent museum research showed the mounted skeleton includes only two bones from this animal. The rest come from a second mastodon found at Anderson Mills in 1898.",
+  "use": "The point suggests people may have hunted mastodons in southwestern Wisconsin, but the link is uncertain because the point never came with the bones.",
+  "status": "The mounted skeleton is displayed at the UW-Madison Geology Museum."
+ },
+ {
+  "type": "found",
+  "name": "Silver Mound and the Hixton quarries",
+  "place": "Near Hixton, Jackson County",
+  "age": "Used from about 12,000 years ago",
+  "lon": -90.99,
+  "lat": 44.38,
+  "approx": true,
+  "found": "Hundreds of quarry pits up to 30 feet across and over 10 feet deep in Hixton silicified sandstone, with rounded quartzite hammers and tool-making debris. Dwyer Rockshelter nearby has faint red paintings, including a bird-like figure, and charcoal dated as early as 9,500 years ago.",
+  "use": "A large quarry and workshop where people broke out stone for tools, which then traveled far; points of this stone turned up as far as Mammoth Cave, Kentucky. Dwyer Rockshelter is read as a seasonal camp where people restocked stone tool kits.",
+  "status": "Listed on the National Register of Historic Places. Parts are used as a campground and farmland, and the Archaeological Conservancy has bought portions."
+ },
+ {
+  "type": "found",
+  "name": "Chesrow Complex",
+  "place": "Pleasant Prairie, Kenosha County",
+  "age": "Used from about 9000 BCE",
+  "lon": -87.92,
+  "lat": 42.54,
+  "approx": true,
+  "found": "A prehistoric camp used over many thousands of years, listed on the National Register of Historic Places in 1978. A 2015 thesis summary says some dates appear much older than 11,000 years before present.",
+  "use": "The National Register lists it as a domestic camp. Whether it is older than Clovis is still being tested and is not settled.",
+  "status": "The site address is restricted to protect it, so the marker sits at the nearby village."
+ },
+ {
+  "type": "found",
+  "name": "Old Copper cemetery",
+  "place": "Oconto, Oconto County",
+  "age": "c. 4000 to 2000 BCE",
+  "lon": -87.9008,
+  "lat": 44.8867,
+  "approx": false,
+  "found": "A burial ground rediscovered in 1952 when a 13-year-old boy dug up human bones in an old quarry. Graves held copper awls, crescents, a spear point, a fishhook and a bracelet, plus stone points, a bone whistle and shell beads.",
+  "use": "Scholars think it was a cemetery of Old Copper Complex people. It is a National Historic Landmark.",
+  "status": "A 42-acre park run by the Oconto County Historical Society, with free admission. The Oconto Archaic Copper Museum is open daily from Memorial Day to Labor Day, or by appointment."
+ },
+ {
+  "type": "found",
+  "name": "Lake Mendota dugout canoes",
+  "place": "Lake Mendota, Madison, Dane County",
+  "age": "About 4,500 years ago to about 1250 CE",
+  "lon": -89.4247,
+  "lat": 43.1067,
+  "approx": true,
+  "found": "Ten dugout canoes found in the lake, the oldest an elm canoe about 4,500 years old. Two are Late Archaic, two oak canoes are Middle Woodland, three or four are Late Woodland fragments, and the newest is a red oak canoe from about 1250 CE. Maritime archaeologist Tamara Thomsen found the first two in 2021 and 2022 while diving.",
+  "use": "Used for travel on the water by people across these periods. Researchers think the canoes were sunk on purpose to keep them over winter, and surveys are also looking for a submerged village of Ho-Chunk ancestors.",
+  "status": "Underwater, and surveys were ongoing. Two canoes have been recovered and the rest remain submerged."
+ },
+ {
+  "type": "found",
+  "name": "Mero Mound Group at Diamond Bluff",
+  "place": "Diamond Bluff, Pierce County",
+  "age": "c. 1000 to 1300 CE",
+  "lon": -92.6,
+  "lat": 44.6333,
+  "approx": true,
+  "found": "At least two village sites surrounded by hundreds of mounds, including three effigy mounds, on the bluffs above the Mississippi River.",
+  "use": "The sources checked give only the age and layout of the site, so what the villages and mounds were used for is not known.",
+  "status": "Listed on the National Register as the Mero Archeological District. The exact location is restricted to protect it, so this is not a visitor site."
+ },
+ {
+  "type": "found",
+  "name": "Strawberry Island site",
+  "place": "Lac du Flambeau, Vilas County",
+  "age": "Periods include c. 1000 to 1499 CE",
+  "lon": -89.86972,
+  "lat": 45.95667,
+  "approx": true,
+  "found": "A village and camp site listed on the National Register of Historic Places. The listing gives no description of finds.",
+  "use": "Not known from the sources checked.",
+  "status": "The address is restricted to protect the site."
+ },
+ {
+  "type": "found",
+  "name": "Carcajou Point",
+  "place": "Lake Koshkonong, Jefferson County",
+  "age": "Oneota c. 1000 to 1500 CE; Ho-Chunk village c. 1728 to 1828",
+  "lon": -88.84,
+  "lat": 42.927,
+  "approx": true,
+  "found": "A 1957 dig found about 3,685 pottery sherds, 79 mostly refuse pits, three house types and three burials, one a bundle of six people with pots. Tools of stone, bone and antler, a copper awl and later European trade goods were also found.",
+  "use": "Excavator Robert Hall thought the Oneota here were likely ancestors of the Ho-Chunk. Pottery designs suggest influence from Aztalan and Cahokia, and the dates helped build an Oneota timeline.",
+  "status": "Access is not stated in the source."
+ },
+ {
+  "type": "found",
+  "name": "Lasley's Point",
+  "place": "North of Winneconne, Winnebago County",
+  "age": "c. 1200 to 1500 CE",
+  "lon": -88.689,
+  "lat": 44.103,
+  "approx": true,
+  "found": "Oneota village remains: bone tools, shells, copper flakes, pottery, early garden beds and cache pits. The Feast Mound had a clamshell and earth platform, a stone-lined pit, a deer skeleton on an altar, and burned and split human bones.",
+  "use": "The Feast Mound may have covered a charnel house or temple. Links between the Oneota and the Ioway and Ho-Chunk have been proposed but not proven.",
+  "status": "A Winnebago County park of 47.7 acres with hiking trails. Last dug in the 1940s and listed on the National Register in 1979."
+ },
+ {
+  "type": "found",
+  "name": "Pammel Creek",
+  "place": "South end of La Crosse, La Crosse County",
+  "age": "15th century CE",
+  "lon": -91.233,
+  "lat": 43.813,
+  "approx": true,
+  "found": "An Oneota village on a low terrace, excavated 1988 to 1989 and later. Finds include shell-tempered pottery, bison and sturgeon remains, a dog, and whistle or flute pieces.",
+  "use": "A pottery study suggests there were no specialized potters, though a few people made several pots.",
+  "status": "Much of the site became a city sedimentation basin, so little is open to see."
+ }
+];
+  SITES.forEach(function (s, i) { s.n = i + 1; });
+
+  // Illustrations: original line art, one motif per site
+  function panther(cls) {
+    cls = cls || "f";
+    return '<g class="' + cls + '"><ellipse cx="86" cy="62" rx="38" ry="15"/><circle cx="44" cy="52" r="12"/><path d="M36 44 L34 34 L42 40Z M50 42 L54 32 L56 44Z"/><rect x="62" y="68" width="9" height="22" rx="4"/><rect x="100" y="68" width="9" height="22" rx="4"/></g><path class="l" d="M122 62 Q170 62 184 84 Q196 102 220 98" style="stroke-width:9' + (cls === "o" ? ';stroke-opacity:.25' : '') + '"/>';
+  }
+  const BIRD = '<g class="f"><ellipse cx="120" cy="72" rx="9" ry="34"/><circle cx="120" cy="30" r="10"/><path d="M120 54 Q64 34 22 70 Q70 60 120 74Z"/><path d="M120 54 Q176 34 218 70 Q170 60 120 74Z"/><path d="M114 100 L120 124 L126 100Z"/></g>';
+  const TURTLE = '<g class="f"><ellipse cx="116" cy="68" rx="40" ry="30"/><circle cx="170" cy="68" r="11"/><ellipse cx="90" cy="38" rx="9" ry="6"/><ellipse cx="142" cy="38" rx="9" ry="6"/><ellipse cx="90" cy="98" rx="9" ry="6"/><ellipse cx="142" cy="98" rx="9" ry="6"/><path d="M76 68 L56 66 L76 72Z"/></g>';
+  const DOMES = '<g class="f"><path d="M18 108 a30 30 0 0 1 60 0Z"/><path d="M86 108 a38 38 0 0 1 76 0Z"/><path d="M170 108 a26 26 0 0 1 52 0Z"/></g><path class="g" d="M8 108 L232 108"/>';
+  function posts(x0, x1, y0, y1) { let s = ""; for (let x = x0; x <= x1; x += 9) s += '<rect x="' + x + '" y="' + y0 + '" width="5" height="' + (y1 - y0) + '"/>'; return s; }
+  const ART = {
+    mammoth: '<g class="f"><ellipse cx="125" cy="66" rx="58" ry="30"/><circle cx="68" cy="58" r="27"/><path d="M48 72 Q36 92 44 116 L56 116 Q50 96 62 80Z"/><rect x="88" y="86" width="16" height="38" rx="6"/><rect x="140" y="86" width="16" height="38" rx="6"/><rect x="114" y="90" width="14" height="34" rx="6"/></g><path class="l" d="M56 80 Q28 98 40 120"/><path class="l" d="M182 60 Q198 72 190 92" style="stroke-width:4"/><path class="g" d="M8 124 L232 124"/>',
+    mastodon: '<g class="f"><ellipse cx="128" cy="74" rx="64" ry="25"/><ellipse cx="66" cy="66" rx="26" ry="22"/><path d="M48 76 Q38 94 44 112 L54 112 Q52 96 62 84Z"/><rect x="86" y="88" width="15" height="34" rx="6"/><rect x="146" y="88" width="15" height="34" rx="6"/><rect x="118" y="92" width="13" height="30" rx="6"/></g><path class="l" d="M56 80 Q28 90 20 66"/><path class="g" d="M8 124 L232 124"/>',
+    point: '<path class="f" d="M120 10 Q156 62 142 116 L98 116 Q84 62 120 10Z"/><path class="cl" d="M120 44 L120 104"/>',
+    quarry: '<g class="l" style="stroke-width:4"><ellipse cx="70" cy="86" rx="46" ry="16"/><ellipse cx="70" cy="86" rx="28" ry="9"/><ellipse cx="168" cy="62" rx="40" ry="13"/><ellipse cx="168" cy="62" rx="22" ry="7"/><ellipse cx="160" cy="108" rx="30" ry="9"/></g><path class="f" d="M120 22 L134 34 L122 46 L110 36Z"/><path class="f" d="M34 40 L46 30 L54 44Z"/>',
+    copper: '<path class="f" d="M24 112 L150 44 L156 52 L30 118Z"/><path class="l" d="M196 22 L196 86 Q196 110 174 110 Q156 110 156 92" style="stroke-width:8"/><path class="f" d="M156 92 L148 80 L164 82Z"/><path class="f" d="M70 14 Q112 56 154 14 Q112 34 70 14Z"/>',
+    canoe: '<path class="f" d="M24 74 Q120 118 216 74 L208 62 Q120 94 32 62Z"/><path class="g" d="M10 96 Q40 88 70 96 T130 96 T190 96 T230 96"/><path class="g" d="M10 112 Q40 104 70 112 T130 112 T190 112 T230 112"/>',
+    mero: '<g class="f"><path d="M14 108 a20 20 0 0 1 40 0Z"/><path d="M60 108 a26 26 0 0 1 52 0Z"/><path d="M118 108 a18 18 0 0 1 36 0Z"/><path d="M160 108 a28 28 0 0 1 56 0Z"/></g><path class="g" d="M8 108 L232 108"/><ellipse class="d" cx="120" cy="40" rx="70" ry="14"/>',
+    lodge: '<path class="f" d="M120 20 L186 110 L54 110Z"/><path class="c" d="M120 70 L138 110 L102 110Z"/><path class="g" d="M10 124 Q40 118 70 124 T130 124 T190 124 T230 124"/>',
+    pot: '<path class="f" d="M84 26 L156 26 L150 38 Q192 66 162 102 Q120 124 78 102 Q48 66 90 38Z"/><path class="cl" d="M72 66 Q120 84 168 66"/><path class="cl" d="M78 80 Q120 98 162 80"/><path class="cl" d="M90 34 L150 34"/>',
+    shelter: '<path class="f" d="M14 114 L14 64 Q14 18 120 18 Q226 18 226 64 L226 114Z"/><path class="c" d="M58 114 L58 84 Q58 50 120 50 Q182 50 182 84 L182 114Z"/><circle class="f" cx="120" cy="104" r="7"/>',
+    rockart: '<rect class="f" x="16" y="14" width="208" height="108" rx="16"/><path class="cl" d="M44 54 Q58 36 72 54 Q86 36 100 54"/><path class="cl" d="M128 96 Q162 112 196 96 M142 100 L142 92 M162 104 L162 96 M182 100 L182 92"/><circle class="c" cx="168" cy="44" r="6"/><path class="cl" d="M168 50 L168 74 M154 58 L182 58 M168 74 L160 88 M168 74 L176 88 M162 40 Q158 30 162 28 M174 40 Q178 30 174 28"/>',
+    domes: DOMES,
+    bird: BIRD,
+    turtle: TURTLE,
+    panther: panther(),
+    intaglio: panther("o"),
+    waterspirit: panther() + '<path class="cl" d="M30 40 L24 26 M60 38 L66 24" style="stroke:currentColor"/>',
+    obs: '<g transform="translate(-6 14) scale(.62)">' + BIRD + '</g><g transform="translate(112 20) scale(.62)">' + TURTLE + '</g>',
+    atkinson: '<g transform="translate(0 6) scale(.8)">' + panther() + '</g><g transform="translate(130 60) scale(.5)">' + DOMES + '</g>',
+    human: '<g class="f"><circle cx="120" cy="30" r="11"/><rect x="111" y="42" width="18" height="40" rx="6"/></g><path class="l" d="M64 56 L176 56"/><path class="l" d="M114 82 L104 122 M126 82 L136 122"/><path class="l" d="M110 22 Q104 8 112 6 M130 22 Q136 8 128 6" style="stroke-width:4"/>',
+    lizard: '<g class="f"><ellipse cx="120" cy="62" rx="12" ry="26"/><circle cx="120" cy="28" r="9"/></g><path class="l" d="M112 48 L70 34 M128 48 L170 34 M112 78 L72 96 M128 78 L168 96" style="stroke-width:8"/><path class="l" d="M120 88 Q132 110 120 126" style="stroke-width:6"/>',
+    aztalan: '<path class="f" d="M62 108 L82 52 L158 52 L178 108Z"/><g class="f">' + posts(6, 52, 88, 112) + posts(188, 232, 88, 112) + '</g><path class="g" d="M6 112 L234 112"/>',
+    ovals: '<g class="f"><ellipse cx="56" cy="68" rx="36" ry="15"/><ellipse cx="124" cy="68" rx="30" ry="13"/><ellipse cx="190" cy="68" rx="30" ry="13"/></g>',
+    cliff: '<path class="f" d="M0 126 L0 58 L150 58 L172 126Z"/><g class="f" transform="translate(14 8) scale(.36)"><ellipse cx="86" cy="62" rx="38" ry="15"/><circle cx="44" cy="52" r="12"/></g><path class="l" d="M60 38 Q82 36 90 48" style="stroke-width:3"/><g class="f" transform="translate(84 8) scale(.36)"><ellipse cx="86" cy="62" rx="38" ry="15"/><circle cx="44" cy="52" r="12"/></g><path class="g" d="M180 104 Q200 98 220 104 T240 104"/><path class="g" d="M176 118 Q200 112 220 118 T240 118"/>'
+  };
+  const CAP = {
+    mammoth: "a mammoth, the animal butchered at these sites",
+    mastodon: "a mastodon, like the one found near Boaz",
+    point: "a fluted stone spear point of the kind made by early hunters",
+    quarry: "quarry pits and stone flakes, as left by toolmakers digging for stone",
+    copper: "copper tools of the kind found in Old Copper graves: an awl, a fishhook and a crescent",
+    canoe: "a dugout canoe, the kind found on the bed of Lake Mendota",
+    mero: "a village ringed by burial mounds, as the site is described",
+    lodge: "a village lodge, standing in for the camp and village site",
+    pot: "an Oneota-style jar, with shell-tempered clay and trailed lines on the shoulder",
+    shelter: "a sandstone rockshelter with a fire pit, as the site is described",
+    rockart: "carved and painted rock art, such as birds, canoes and a horned figure",
+    domes: "round burial mounds seen from the side",
+    bird: "a bird effigy seen from above, in the style of Wisconsin effigy mounds",
+    turtle: "a turtle effigy seen from above",
+    panther: "a long-tailed animal effigy, often called a panther or water spirit, seen from above",
+    intaglio: "a panther dug into the ground as a shallow depression rather than built up as a mound",
+    waterspirit: "a long-tailed water spirit effigy with horns, seen from above",
+    obs: "the bird and turtle effigies on Observatory Hill, seen from above",
+    atkinson: "a long-tailed effigy beside round mounds",
+    human: "a horned human figure, as Man Mound is described, seen from above",
+    lizard: "a spread-eagle figure like Lizard Mound, seen from above",
+    aztalan: "a flat-topped platform mound with a wooden stockade",
+    ovals: "large oval mounds seen from above",
+    cliff: "two long-tailed effigies on a limestone cliff above a lake"
+  };
+  const MOTIF_OF = {
+    "Raddatz Rockshelter": "shelter", "Roche-a-Cri petroglyphs and pictographs": "rockart", "Wyalusing mounds and Sentinel Ridge": "domes",
+    "Trempealeau mounds and camps": "domes", "Beloit College effigy mounds": "turtle", "Observatory Hill mounds": "obs",
+    "Lizard Mound State Park": "lizard", "Devil's Lake mounds": "bird", "Panther Intaglio": "intaglio", "General Atkinson mound group": "atkinson",
+    "Burrows Park bird effigy": "bird", "Kingsley Bend mound group": "waterspirit", "Cassville Bluffs bird effigy": "bird",
+    "High Cliff effigy mounds": "cliff", "Sheboygan Indian Mound Park": "panther", "Man Mound": "human", "Aztalan": "aztalan",
+    "Upper Wakanda Park mound group": "ovals", "Schaefer and Hebior mammoth sites": "mammoth", "Boaz mastodon": "mastodon",
+    "Silver Mound and the Hixton quarries": "quarry", "Chesrow Complex": "point", "Old Copper cemetery": "copper",
+    "Lake Mendota dugout canoes": "canoe", "Mero Mound Group at Diamond Bluff": "mero", "Strawberry Island site": "lodge",
+    "Carcajou Point": "pot", "Lasley's Point": "pot", "Pammel Creek": "pot"
+  };
+  SITES.forEach(function (s) { s.motif = MOTIF_OF[s.name] || "domes"; });
+
+  // Base map
+  mk("rect", { x: 100, y: 60, width: 560, height: 540, fill: "var(--bg)" });
+  mk("polygon", { class: "water", points: pts([[-92.1,46.77]].concat(G.SUP, G.UP, [[-84.4,46.8],[-84.4,48.5],[-92.1,48.5]])) });
+  mk("polygon", { class: "water", points: pts(G.MI_LAKE) });
+  mk("polygon", { class: "wi", points: pts(G.WI) });
+  mk("text", { class: "lakelab", x: PX(-90.0), y: PY(47.35) }, "Lake Superior");
+    mk("line", { class: "scale", x1: 125, x2: 270, y1: 556, y2: 556 });
+  mk("line", { class: "scale", x1: 125, x2: 125, y1: 550, y2: 562 });
+  mk("line", { class: "scale", x1: 270, x2: 270, y1: 550, y2: 562 });
+  mk("text", { class: "scalelab", x: 125, y: 544 }, "100 miles");
+
+  // Spread overlapping pins apart so every number can be read and clicked
+  const orig = SITES.map(function (s) { return { x: PX(s.lon), y: PY(s.lat) }; });
+  const pos = orig.map(function (p) { return { x: p.x, y: p.y }; });
+  const MIN = 27;
+  for (let it = 0; it < 400; it++) {
+    for (let i = 0; i < pos.length; i++) {
+      for (let j = i + 1; j < pos.length; j++) {
+        let dx = pos[j].x - pos[i].x, dy = pos[j].y - pos[i].y;
+        let d = Math.sqrt(dx * dx + dy * dy);
+        if (d < MIN) {
+          if (d < 0.01) { const a = (i * 2.4 + j) ; dx = Math.cos(a); dy = Math.sin(a); d = 1; }
+          const push = (MIN - d) / 2 + 0.05;
+          const ux = dx / d, uy = dy / d;
+          pos[i].x -= ux * push; pos[i].y -= uy * push;
+          pos[j].x += ux * push; pos[j].y += uy * push;
+        }
+      }
+    }
+    for (let i = 0; i < pos.length; i++) {
+      pos[i].x += (orig[i].x - pos[i].x) * 0.01;
+      pos[i].y += (orig[i].y - pos[i].y) * 0.01;
+      pos[i].x = Math.max(135, Math.min(545, pos[i].x));
+      pos[i].y = Math.max(105, Math.min(525, pos[i].y));
+    }
+  }
+
+  const leaders = mk("g", {});
+  const layer = mk("g", {});
+  SITES.forEach(function (s, i) {
+    const o = orig[i], p = pos[i];
+    const moved = Math.sqrt((o.x - p.x) * (o.x - p.x) + (o.y - p.y) * (o.y - p.y)) > 8;
+    s.leader = null;
+    if (moved) {
+      mk("circle", { cx: o.x, cy: o.y, r: 2.5, fill: "var(--muted)" }, null, leaders);
+      s.leader = mk("line", { class: "leader", x1: o.x, y1: o.y, x2: p.x, y2: p.y }, null, leaders);
+    }
+    const g = mk("g", { class: "pin " + s.type, tabindex: "0", role: "button", "aria-pressed": "false", "aria-label": s.n + ". " + s.name }, null, layer);
+    if (s.type === "standing") {
+      mk("circle", { class: "shape", cx: p.x, cy: p.y, r: 11 }, null, g);
+    } else {
+      mk("polygon", { class: "shape", points: p.x + "," + (p.y - 13) + " " + (p.x + 13) + "," + p.y + " " + p.x + "," + (p.y + 13) + " " + (p.x - 13) + "," + p.y }, null, g);
+    }
+    mk("text", { class: "num", x: p.x, y: p.y + 4 }, String(s.n), g);
+    g.addEventListener("click", function () { select(s.n); });
+    g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(s.n); } });
+    s.pin = g;
+  });
+
+  // Layer filter
+  const layers = document.getElementById("alayers");
+  let curLayer = "all", curSite = 1;
+  const counts = { all: SITES.length, standing: 0, found: 0 };
+  SITES.forEach(function (s) { counts[s.type]++; });
+  [["all", "All sites"], ["standing", "Still standing"], ["found", "Found and recovered"]].forEach(function (L) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "ptab"; b.setAttribute("data-layer", L[0]);
+    b.textContent = L[1] + " (" + counts[L[0]] + ")";
+    b.addEventListener("click", function () {
+      curLayer = L[0];
+      if (!visible(SITES[curSite - 1])) {
+        curSite = SITES.filter(visible)[0].n;
+      }
+      render();
+    });
+    layers.appendChild(b);
+  });
+  function visible(s) { return curLayer === "all" || s.type === curLayer; }
+  function select(n) { curSite = n; render(); }
+
+  // List
+  const list = document.getElementById("slist");
+  const items = SITES.map(function (s) {
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = s.type === "standing" ? "st" : "fd";
+    b.setAttribute("aria-pressed", "false");
+    const n = document.createElement("span"); n.className = "n"; n.textContent = String(s.n);
+    const box = document.createElement("span");
+    box.appendChild(document.createTextNode(s.name));
+    const pl = document.createElement("span"); pl.className = "pl"; pl.textContent = s.age;
+    box.appendChild(pl);
+    b.appendChild(n); b.appendChild(box);
+    b.addEventListener("click", function () { select(s.n); });
+    li.appendChild(b);
+    list.appendChild(li);
+    return { li: li, b: b };
+  });
+
+  function render() {
+    layers.querySelectorAll(".ptab").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-layer") === curLayer ? "true" : "false");
+    });
+    SITES.forEach(function (s, i) {
+      const vis = visible(s);
+      s.pin.classList.toggle("dim", !vis);
+      if (s.leader) s.leader.style.opacity = vis ? "1" : "0.15";
+      s.pin.setAttribute("aria-pressed", s.n === curSite ? "true" : "false");
+      items[i].li.hidden = !vis;
+      items[i].b.setAttribute("aria-pressed", s.n === curSite ? "true" : "false");
+    });
+    layer.appendChild(SITES[curSite - 1].pin);
+    const s = SITES[curSite - 1];
+    const box = document.getElementById("asite");
+    while (box.firstChild) box.removeChild(box.firstChild);
+    function add(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; e.textContent = text; box.appendChild(e); }
+    function drawing(f) {
+      f.className = "ill " + s.type;
+      const art = document.createElementNS(NSV, "svg");
+      art.setAttribute("viewBox", "0 0 240 135");
+      art.setAttribute("role", "img");
+      art.setAttribute("aria-label", "Illustration of " + CAP[s.motif]);
+      art.innerHTML = ART[s.motif];
+      f.appendChild(art);
+      const fc = document.createElement("figcaption");
+      fc.textContent = "No photo found for this site. Drawing of " + CAP[s.motif] + ", not a photograph.";
+      f.appendChild(fc);
+    }
+    const fig = picFig(SITE_IMG[s.name] || [], "ill " + s.type, drawing, SITE_LOOSE[s.name] ? "Photo of the area" : "Photo");
+    box.appendChild(fig);
+    add("p", "kind " + s.type, s.type === "standing" ? "Still standing" : "Found and recovered");
+    add("h3", "", s.n + ". " + s.name);
+    add("p", "meta", s.place + " · " + s.age);
+    add("p", "lbl", "What was found or is there");
+    add("p", "", s.found);
+    add("p", "lbl", "What it was probably used for");
+    add("p", "", s.use);
+    if (s.status) { add("p", "lbl", "Visiting and status"); add("p", "status", s.status); }
+    if (s.approx) add("p", "status", "The marker is approximate. The site's exact location is not published in the sources used.");
+  }
+  render();
+})();
 
 // Population chart, drawn to one scale
 (function () {
